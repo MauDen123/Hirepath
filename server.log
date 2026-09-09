@@ -1,0 +1,26 @@
+
+> hirepath@0.1.0 dev
+> next dev -p 5000
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:5000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1459ms
+ ✓ Compiled /src/middleware in 314ms (72 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.4s (502 modules)
+ GET / 200 in 2536ms
+ ✓ Compiled in 249ms (246 modules)
+ GET / 200 in 66ms
+ GET / 200 in 114ms
+ ○ Compiling /applicant ...
+ ✓ Compiled /applicant in 712ms (549 modules)
+ ✓ Compiled in 132ms (271 modules)
+ ✓ Compiled /_not-found in 134ms (538 modules)
+ GET /applicant/applications 404 in 87ms
+ GET /applicant 200 in 64ms
+ GET /applicant/documents 404 in 59ms
+ GET /applicant 200 in 58ms
+[?25h

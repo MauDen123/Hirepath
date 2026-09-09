@@ -1,0 +1,117 @@
+  ▲ Next.js 14.2.35
+  - Environments: .env
+
+   Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (203kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+Failed to compile.
+
+node:crypto
+Module build failed: UnhandledSchemeError: Reading from "node:crypto" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401757
+    at Hook.eval [as callAsync] (eval at create (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:6:1)
+    at Object.processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401682)
+    at processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:5308)
+    at iteratePitchingLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:4667)
+    at runLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:8590)
+    at NormalModule._doBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401544)
+    at NormalModule.build (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:403572)
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:82055
+    at NormalModule.needBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:407704)
+
+Import trace for requested module:
+node:crypto
+./node_modules/@prisma/client/runtime/client.mjs
+./src/generated/prisma/internal/class.ts
+./src/generated/prisma/client.ts
+./src/lib/prisma.ts
+
+node:fs
+Module build failed: UnhandledSchemeError: Reading from "node:fs" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401757
+    at Hook.eval [as callAsync] (eval at create (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:6:1)
+    at Object.processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401682)
+    at processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:5308)
+    at iteratePitchingLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:4667)
+    at runLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:8590)
+    at NormalModule._doBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401544)
+    at NormalModule.build (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:403572)
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:82055
+    at NormalModule.needBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:407704)
+
+Import trace for requested module:
+node:fs
+./node_modules/@prisma/client/runtime/client.mjs
+./src/generated/prisma/internal/class.ts
+./src/generated/prisma/client.ts
+./src/lib/prisma.ts
+
+node:module
+Module build failed: UnhandledSchemeError: Reading from "node:module" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401757
+    at Hook.eval [as callAsync] (eval at create (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:6:1)
+    at Object.processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401682)
+    at processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:5308)
+    at iteratePitchingLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:4667)
+    at runLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:8590)
+    at NormalModule._doBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401544)
+    at NormalModule.build (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:403572)
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:82055
+    at NormalModule.needBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:407704)
+
+Import trace for requested module:
+node:module
+./node_modules/@prisma/client/runtime/client.mjs
+./src/generated/prisma/internal/class.ts
+./src/generated/prisma/client.ts
+./src/lib/prisma.ts
+
+node:os
+Module build failed: UnhandledSchemeError: Reading from "node:os" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401757
+    at Hook.eval [as callAsync] (eval at create (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:6:1)
+    at Object.processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401682)
+    at processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:5308)
+    at iteratePitchingLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:4667)
+    at runLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:8590)
+    at NormalModule._doBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401544)
+    at NormalModule.build (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:403572)
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:82055
+    at NormalModule.needBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:407704)
+
+Import trace for requested module:
+node:os
+./node_modules/@prisma/client/runtime/client.mjs
+./src/generated/prisma/internal/class.ts
+./src/generated/prisma/client.ts
+./src/lib/prisma.ts
+
+node:path
+Module build failed: UnhandledSchemeError: Reading from "node:path" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401757
+    at Hook.eval [as callAsync] (eval at create (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:6:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:13:26012)
+    at Object.processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401682)
+    at processResource (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:5308)
+    at iteratePitchingLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:4667)
+    at runLoaders (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:8590)
+    at NormalModule._doBuild (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:401544)
+    at NormalModule.build (F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:403572)
+    at F:\Coding\hirepath\hirepath\node_modules\next\dist\compiled\webpack\bundle5.js:28:82055
+
+Import trace for requested module:
+node:path
+./src/generated/prisma/client.ts
+./src/lib/prisma.ts
+
+
+> Build failed because of webpack errors

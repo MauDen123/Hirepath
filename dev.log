@@ -1,0 +1,227 @@
+
+> hirepath@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://26.177.97.11:3000
+- Environments: .env
+✓ Ready in 459ms
+✓ Running next.config.js took 27ms
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+ POST /api/auth/login 200 in 774ms (next.js: 425ms, application-code: 349ms)
+ GET /applicant 200 in 2.5s (next.js: 2.0s, proxy.ts: 210ms, application-code: 258ms)
+ POST /api/auth/login 200 in 468ms (next.js: 4ms, application-code: 464ms)
+ GET /vacancies 200 in 464ms (next.js: 321ms, proxy.ts: 46ms, application-code: 97ms)
+ GET /?email=juana.cruz%40example.com&password=changeme123 200 in 585ms (next.js: 534ms, proxy.ts: 3ms, application-code: 48ms)
+ GET / 200 in 41ms (next.js: 6ms, proxy.ts: 3ms, application-code: 32ms)
+ POST /api/auth/login 200 in 135ms (next.js: 3ms, application-code: 132ms)
+ GET /applicant 200 in 49ms (next.js: 6ms, proxy.ts: 5ms, application-code: 39ms)
+ GET /applicant/applications 200 in 286ms (next.js: 233ms, proxy.ts: 5ms, application-code: 48ms)
+ GET /applicant/documents 200 in 262ms (next.js: 195ms, proxy.ts: 4ms, application-code: 62ms)
+ GET /career-path 200 in 279ms (next.js: 200ms, proxy.ts: 4ms, application-code: 75ms)
+ GET /applicant 200 in 58ms (next.js: 6ms, proxy.ts: 8ms, application-code: 44ms)
+ POST /api/auth/login 200 in 131ms (next.js: 10ms, application-code: 121ms)
+ GET / 307 in 13ms (proxy.ts: 3ms)
+ GET / 200 in 16ms (next.js: 6ms, proxy.ts: 2ms, application-code: 8ms)
+ POST /api/auth/login 200 in 84ms (next.js: 3ms, application-code: 81ms)
+ POST /api/auth/login 200 in 80ms (next.js: 3ms, application-code: 77ms)
+ POST /api/auth/login 200 in 79ms (next.js: 3ms, application-code: 76ms)
+ POST /api/auth/login 200 in 84ms (next.js: 3ms, application-code: 80ms)
+ POST /api/auth/login 200 in 81ms (next.js: 3ms, application-code: 78ms)
+ POST /api/auth/login 200 in 85ms (next.js: 3ms, application-code: 82ms)
+ POST /api/auth/login 200 in 80ms (next.js: 3ms, application-code: 77ms)
+ POST /api/auth/login 200 in 94ms (next.js: 4ms, application-code: 90ms)
+ GET /admin 200 in 539ms (next.js: 318ms, proxy.ts: 4ms, application-code: 217ms)
+ GET /admin 200 in 65ms (next.js: 6ms, proxy.ts: 6ms, application-code: 53ms)
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+ GET /vacancies 200 in 34ms (next.js: 6ms, proxy.ts: 3ms, application-code: 25ms)
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+ GET /vacancies 200 in 41ms (next.js: 6ms, proxy.ts: 6ms, application-code: 29ms)
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+ GET / 200 in 31ms (next.js: 7ms, proxy.ts: 3ms, application-code: 21ms)
+ POST /api/auth/login 200 in 130ms (next.js: 9ms, application-code: 122ms)
+ GET /api/migrate-session 200 in 272ms (next.js: 218ms, application-code: 54ms)
+ POST /api/auth/login 200 in 132ms (next.js: 3ms, application-code: 129ms)
+ GET /hr 200 in 556ms (next.js: 258ms, proxy.ts: 44ms, application-code: 254ms)
+ GET /hr 200 in 76ms (next.js: 5ms, proxy.ts: 7ms, application-code: 64ms)
+ GET / 200 in 30ms (next.js: 7ms, proxy.ts: 4ms, application-code: 19ms)
+ POST /api/auth/login 200 in 125ms (next.js: 8ms, application-code: 117ms)
+ GET /hr 200 in 266ms (next.js: 5ms, proxy.ts: 42ms, application-code: 219ms)
+ POST /api/auth/login 200 in 89ms (next.js: 3ms, application-code: 86ms)
+ GET /applicant 200 in 95ms (next.js: 6ms, proxy.ts: 38ms, application-code: 51ms)
+ GET / 200 in 35ms (next.js: 5ms, proxy.ts: 2ms, application-code: 27ms)
+ POST /api/auth/login 200 in 115ms (next.js: 3ms, application-code: 112ms)
+ GET /hr 200 in 106ms (next.js: 5ms, proxy.ts: 4ms, application-code: 96ms)
+ GET /hr/review/cmtmpswdk000vdstazka7dsie 404 in 163ms (next.js: 136ms, proxy.ts: 8ms, application-code: 19ms)
+ GET /hr/review/cmtmpswdk000vdstazka7dsie 404 in 57ms (next.js: 10ms, proxy.ts: 16ms, application-code: 31ms)
+ GET /vacancies 200 in 34ms (next.js: 7ms, proxy.ts: 3ms, application-code: 24ms)
+ GET /vacancies 200 in 106ms (next.js: 6ms, proxy.ts: 42ms, application-code: 58ms)
+ GET /crrc-evaluations 200 in 514ms (next.js: 489ms, proxy.ts: 7ms, application-code: 18ms)
+ GET /career-path 200 in 53ms (next.js: 16ms, proxy.ts: 4ms, application-code: 33ms)
+ GET / 307 in 9ms (proxy.ts: 1.4ms)
+ GET / 200 in 24ms (next.js: 5ms, proxy.ts: 3ms, application-code: 17ms)
+ POST /api/auth/login 200 in 79ms (next.js: 4ms, application-code: 75ms)
+ GET /hr 200 in 92ms (next.js: 8ms, proxy.ts: 3ms, application-code: 80ms)
+ GET /reports 404 in 34ms (next.js: 11ms, proxy.ts: 6ms, application-code: 17ms)
+ GET /reports 404 in 40ms (next.js: 8ms, proxy.ts: 3ms, application-code: 29ms)
+ GET /career-path 200 in 39ms (next.js: 6ms, proxy.ts: 3ms, application-code: 29ms)
+ GET / 307 in 6ms (proxy.ts: 1.7ms)
+ GET / 200 in 23ms (next.js: 5ms, proxy.ts: 1.5ms, application-code: 16ms)
+ GET / 200 in 27ms (next.js: 5ms, proxy.ts: 1.7ms, application-code: 20ms)
+ POST /api/auth/login 200 in 119ms (next.js: 3ms, application-code: 116ms)
+ GET /career-path 200 in 185ms (next.js: 27ms, proxy.ts: 41ms, application-code: 117ms)
+ GET /career-path 200 in 148ms (next.js: 5ms, proxy.ts: 46ms, application-code: 98ms)
+ POST /api/auth/login 200 in 129ms (next.js: 3ms, application-code: 125ms)
+ GET /career-path 200 in 111ms (next.js: 5ms, proxy.ts: 5ms, application-code: 101ms)
+ GET /vacancies 200 in 124ms (next.js: 8ms, proxy.ts: 45ms, application-code: 71ms)
+ GET /reports 404 in 79ms (next.js: 11ms, proxy.ts: 41ms, application-code: 26ms)
+ GET /crrc-evaluations 200 in 78ms (next.js: 5ms, proxy.ts: 43ms, application-code: 30ms)
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+ GET / 200 in 190ms (next.js: 74ms, proxy.ts: 62ms, application-code: 54ms)
+ GET / 200 in 28ms (next.js: 6ms, proxy.ts: 2ms, application-code: 20ms)
+ GET / 200 in 65ms (next.js: 6ms, proxy.ts: 2ms, application-code: 56ms)
+ GET / 200 in 66ms (next.js: 7ms, proxy.ts: 2ms, application-code: 57ms)
+ GET / 200 in 70ms (next.js: 7ms, proxy.ts: 3ms, application-code: 59ms)
+ GET / 200 in 60ms (next.js: 8ms, proxy.ts: 3ms, application-code: 49ms)
+ GET / 200 in 56ms (next.js: 6ms, proxy.ts: 4ms, application-code: 46ms)
+ GET / 200 in 59ms (next.js: 6ms, proxy.ts: 3ms, application-code: 51ms)
+ GET / 200 in 53ms (next.js: 6ms, proxy.ts: 2ms, application-code: 44ms)
+ GET / 200 in 54ms (next.js: 5ms, proxy.ts: 3ms, application-code: 46ms)
+ GET / 200 in 66ms (next.js: 5ms, proxy.ts: 1.9ms, application-code: 59ms)
+ GET / 200 in 83ms (next.js: 12ms, proxy.ts: 3ms, application-code: 68ms)
+ GET / 200 in 71ms (next.js: 10ms, proxy.ts: 3ms, application-code: 59ms)
+ GET / 200 in 56ms (next.js: 7ms, proxy.ts: 3ms, application-code: 46ms)
+ GET / 200 in 54ms (next.js: 6ms, proxy.ts: 2ms, application-code: 46ms)
+ GET / 200 in 52ms (next.js: 6ms, proxy.ts: 2.0ms, application-code: 44ms)
+ GET / 200 in 60ms (next.js: 7ms, proxy.ts: 3ms, application-code: 51ms)
+ GET / 200 in 74ms (next.js: 6ms, proxy.ts: 2ms, application-code: 67ms)
+ GET / 200 in 98ms (next.js: 11ms, proxy.ts: 4ms, application-code: 83ms)
+ GET / 200 in 94ms (next.js: 8ms, proxy.ts: 3ms, application-code: 83ms)
+ GET / 200 in 67ms (next.js: 10ms, proxy.ts: 3ms, application-code: 54ms)
+ GET / 200 in 63ms (next.js: 7ms, proxy.ts: 2ms, application-code: 54ms)
+ GET / 200 in 73ms (next.js: 6ms, proxy.ts: 2ms, application-code: 65ms)
+ GET / 200 in 69ms (next.js: 7ms, proxy.ts: 4ms, application-code: 58ms)
+ GET / 200 in 68ms (next.js: 8ms, proxy.ts: 3ms, application-code: 57ms)
+ GET / 200 in 66ms (next.js: 8ms, proxy.ts: 2ms, application-code: 55ms)
+ GET / 200 in 72ms (next.js: 8ms, proxy.ts: 2ms, application-code: 61ms)
+ GET / 200 in 71ms (next.js: 6ms, proxy.ts: 4ms, application-code: 62ms)
+ GET / 200 in 66ms (next.js: 7ms, proxy.ts: 4ms, application-code: 55ms)
+ GET / 200 in 60ms (next.js: 7ms, proxy.ts: 2ms, application-code: 51ms)
+ GET / 200 in 57ms (next.js: 7ms, proxy.ts: 1.8ms, application-code: 48ms)
+ GET / 200 in 56ms (next.js: 5ms, proxy.ts: 3ms, application-code: 48ms)
+ GET / 200 in 55ms (next.js: 6ms, proxy.ts: 2ms, application-code: 47ms)
+ GET / 200 in 34ms (next.js: 5ms, proxy.ts: 3ms, application-code: 26ms)
+ GET / 200 in 35ms (next.js: 7ms, proxy.ts: 2ms, application-code: 26ms)
+ GET / 200 in 28ms (next.js: 5ms, proxy.ts: 2ms, application-code: 21ms)
+ GET / 200 in 58ms (next.js: 6ms, proxy.ts: 2ms, application-code: 49ms)
+ GET / 200 in 33ms (next.js: 6ms, proxy.ts: 2.0ms, application-code: 25ms)
+ GET /reports 200 in 396ms (next.js: 261ms, proxy.ts: 46ms, application-code: 89ms)
+ GET /career-path 200 in 198ms (next.js: 21ms, proxy.ts: 39ms, application-code: 138ms)
+ POST /api/auth/login 200 in 510ms (next.js: 33ms, application-code: 477ms)
+ GET /hr 200 in 229ms (next.js: 13ms, proxy.ts: 4ms, application-code: 212ms)
+ GET /vacancies 200 in 48ms (next.js: 12ms, proxy.ts: 6ms, application-code: 29ms)
+ GET /crrc-evaluations 200 in 33ms (next.js: 9ms, proxy.ts: 7ms, application-code: 16ms)
+ GET /career-path 200 in 42ms (next.js: 5ms, proxy.ts: 3ms, application-code: 34ms)
+ GET /reports 200 in 29ms (next.js: 5ms, proxy.ts: 4ms, application-code: 21ms)
+ GET /hr 200 in 227ms (next.js: 6ms, proxy.ts: 38ms, application-code: 183ms)
+ GET /vacancies 200 in 38ms (next.js: 5ms, proxy.ts: 7ms, application-code: 26ms)
+ POST /api/auth/login 200 in 291ms (next.js: 3ms, application-code: 288ms)
+ GET /admin 200 in 205ms (next.js: 12ms, proxy.ts: 4ms, application-code: 188ms)
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+ GET /vacancies 200 in 32ms (next.js: 5ms, proxy.ts: 6ms, application-code: 22ms)
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, `#`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+⚠ Duplicate page detected. src\app\vacancies\page.ts and src\app\vacancies\page.tsx resolve to /vacancies
+ GET / 200 in 210ms (next.js: 60ms, proxy.ts: 57ms, application-code: 93ms)
+ POST /api/auth/login 200 in 172ms (next.js: 34ms, application-code: 137ms)
+ GET /admin 200 in 362ms (next.js: 175ms, proxy.ts: 5ms, application-code: 183ms)
+ GET /admin 200 in 147ms (next.js: 8ms, proxy.ts: 5ms, application-code: 134ms)
+ GET /admin/accounts 200 in 383ms (next.js: 343ms, proxy.ts: 7ms, application-code: 33ms)
+ GET /admin/plantilla 200 in 204ms (next.js: 167ms, proxy.ts: 4ms, application-code: 33ms)
+ GET /admin/qs-templates 200 in 215ms (next.js: 173ms, proxy.ts: 4ms, application-code: 38ms)
+ GET /admin/logs 200 in 206ms (next.js: 178ms, proxy.ts: 3ms, application-code: 25ms)
+ GET /vacancies 200 in 76ms (next.js: 13ms, proxy.ts: 3ms, application-code: 59ms)

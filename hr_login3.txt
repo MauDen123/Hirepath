@@ -1,0 +1,1 @@
+{"success":true,"user":{"id":"cmtmpswad0004dstanzdur2zq","email":"hrmo@plm.edu.ph","name":"Reynaldo J. Villegas","role":"hr","collegeId":null,"createdAt":"2026-09-04T08:51:32.341Z","updatedAt":"2026-09-04T08:51:32.341Z"}}

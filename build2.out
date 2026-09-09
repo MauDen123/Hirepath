@@ -1,0 +1,15 @@
+  ▲ Next.js 14.2.35
+  - Environments: .env
+
+   Creating an optimized production build ...
+
+> Build error occurred
+ReferenceError: require is not defined
+    at Object.webpack (file:///F:/Coding/hirepath/hirepath/next.config.mjs:9:17)
+    at getBaseWebpackConfig (F:\Coding\hirepath\hirepath\node_modules\next\dist\build\webpack-config.js:1838:32)
+    at async Promise.all (index 0)
+    at async Span.traceAsyncFn (F:\Coding\hirepath\hirepath\node_modules\next\dist\trace\trace.js:154:20)
+    at async webpackBuildImpl (F:\Coding\hirepath\hirepath\node_modules\next\dist\build\webpack-build\impl.js:136:21)
+    at async F:\Coding\hirepath\hirepath\node_modules\next\dist\build\index.js:1006:111
+    at async Span.traceAsyncFn (F:\Coding\hirepath\hirepath\node_modules\next\dist\trace\trace.js:154:20)
+    at async build (F:\Coding\hirepath\hirepath\node_modules\next\dist\build\index.js:368:9)

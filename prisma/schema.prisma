@@ -1,0 +1,309 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================================================
+// Enums
+// ==========================================================================
+
+// President and Board of Regents are deliberately NOT included here —
+// per design, they are tracked as Vacancy status checkpoints + a manually
+// entered approval reference, not system logins.
+enum UserRole {
+  applicant
+  hr
+  dean
+  vpaa
+  admin
+}
+
+enum HiringTrack {
+  faculty
+  administrative
+}
+
+enum AppointmentType {
+  permanent
+  temporary   // e.g. faculty hired without a completed Master's degree yet
+  cos         // Contract of Service — no employer-employee relationship,
+              // not submitted to CSC, renewed on a fixed cycle subject to budget
+}
+
+enum VacancyStatus {
+  draft
+  pending_hr_review
+  returned
+  awaiting_vpaa_endorsement
+  awaiting_president_approval
+  awaiting_board_confirmation
+  published
+  closed
+}
+
+enum ApplicationStatus {
+  submitted
+  under_review
+  deficient
+  qualified
+  psc_screened      // Stage 1 complete — Personnel Selection Committee
+  shortlisted       // Top 5 endorsed to HRM-PSB (Stage 2)
+  psb_evaluated
+  crrc_scheduled     // Faculty track only
+  crrc_evaluated
+  appointed
+  not_selected
+}
+
+enum DocumentType {
+  pds
+  work_experience_sheet
+  transcript_of_records
+  certification
+  eligibility
+  other
+}
+
+enum VerificationStatus {
+  pending
+  verified
+  flagged
+}
+
+enum PscOutcome {
+  attended
+  no_contact
+  already_employed
+  withdrew
+  other
+}
+
+// ==========================================================================
+// Identity & org structure
+// ==========================================================================
+
+model College {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+
+  deans     User[]    @relation("CollegeDeans")
+  vacancies Vacancy[]
+
+  @@map("colleges")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         UserRole
+  collegeId    String?  // set only for Dean accounts — VPAA is university-wide
+  college      College? @relation("CollegeDeans", fields: [collegeId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  applications Application[]
+
+  vacanciesDrafted        Vacancy[] @relation("VacancyCreatedBy")
+  vacanciesHrReviewed     Vacancy[] @relation("VacancyHrReviewedBy")
+  vacanciesVpaaEndorsed   Vacancy[] @relation("VacancyVpaaEndorsedBy")
+
+  auditLogs AuditLog[]
+  sessions Session[]
+
+  @@map("users")
+}
+
+// ==========================================================================
+// Qualification Standards (CSC/CHED-based reference data)
+// ==========================================================================
+
+model QSTemplate {
+  id            String      @id @default(cuid())
+  positionTitle String
+  salaryGrade   Int
+  track         HiringTrack
+  education     String
+  experience    String
+  training      String
+  eligibility   String
+  competencies  String?
+
+  vacancies  Vacancy[]
+  careerRank CareerRank?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([positionTitle, salaryGrade])
+  @@map("qs_templates")
+}
+
+// Faculty ranks form a strict ladder; admin ranks do not (per PLM HR: admin
+// staff can move to any position they qualify for, no forced sequence).
+// sequenceNo only implies strict ordering when track = faculty.
+model CareerRank {
+  id           String      @id @default(cuid())
+  track        HiringTrack
+  sequenceNo   Int
+  qsTemplateId String      @unique
+  qsTemplate   QSTemplate  @relation(fields: [qsTemplateId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@map("career_ranks")
+}
+
+// ==========================================================================
+// Vacancies (maps to CS Form No. 9 fields + the real approval chain)
+// ==========================================================================
+
+model Vacancy {
+  id                String          @id @default(cuid())
+  positionTitle     String
+  plantillaItemNo   String?
+  salaryGrade       Int
+  monthlySalary     Decimal?        @db.Decimal(10, 2)
+  placeOfAssignment String
+  track             HiringTrack
+  appointmentType   AppointmentType @default(permanent)
+  slots             Int             @default(1)
+
+  qsTemplateId String?
+  qsTemplate   QSTemplate? @relation(fields: [qsTemplateId], references: [id])
+
+  collegeId String?  // set for faculty-track vacancies
+  college   College? @relation(fields: [collegeId], references: [id])
+
+  status        VacancyStatus @default(draft)
+  createdByRole UserRole
+  createdById   String
+  createdBy     User          @relation("VacancyCreatedBy", fields: [createdById], references: [id])
+
+  // Stage 1 — HR compliance review (QS, plantilla, SG)
+  hrReviewedById String?
+  hrReviewedBy   User?     @relation("VacancyHrReviewedBy", fields: [hrReviewedById], references: [id])
+  hrReviewNotes  String?   // populated when status = returned
+  hrReviewedAt   DateTime?
+
+  // Stage 2 — VPAA (or relevant VP) endorsement
+  vpaaEndorsedById String?
+  vpaaEndorsedBy   User?     @relation("VacancyVpaaEndorsedBy", fields: [vpaaEndorsedById], references: [id])
+  vpaaEndorsedAt   DateTime?
+
+  // Stage 3 & 4 — President approval, Board of Regents confirmation.
+  // Neither is a system login; HR updates these manually once the physical
+  // approval/signed resolution comes back.
+  presidentApprovedAt DateTime?
+  boardConfirmedAt    DateTime?
+  approvalDocumentRef String?   // e.g. Board Resolution No., memo reference
+
+  // Publication — channel differs by track per PLM HR: admin vacancies go
+  // through CSC + physical bulletin boards; faculty vacancies are posted
+  // only to PLM's own website.
+  publicationChannels String[] @default([])
+  postingDate         DateTime?
+  closingDate         DateTime? // admin: postingDate + 15 days (CSC rule)
+  validityMonths       Int?      // admin vacancies stay authorized ~9 months
+
+  applications Application[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vacancies")
+}
+
+// ==========================================================================
+// Applications & documents
+// ==========================================================================
+
+model Application {
+  id          String  @id @default(cuid())
+  applicantId String
+  applicant   User    @relation(fields: [applicantId], references: [id])
+  vacancyId   String
+  vacancy     Vacancy @relation(fields: [vacancyId], references: [id])
+
+  status ApplicationStatus @default(submitted)
+
+  qsMatchScore Float? // 0-100, computed from parsed document data
+
+  // Stage 1 — Personnel Selection Committee (admin track)
+  pscScore           Float?
+  pscOutcome         PscOutcome?
+  pscOutcomeNote     String?      // e.g. reason if not "attended"
+
+  // Stage 2 — HRM Personnel Selection Board (top 5 from PSC advance here)
+  psbScore Float?
+
+  // Faculty track — run by the college itself, separate from HR/PSC-PSB
+  teachingDemoConducted Boolean @default(false)
+  teachingDemoScore     Float?
+  crrcScore             Float?
+
+  // Temporary faculty appointment tracking (hired without completed Master's)
+  mastersDeadline  DateTime? // typically hire date + 5 years
+  mastersCompleted Boolean?
+
+  decisionNotes String?
+
+  documents Document[]
+
+  submittedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([applicantId, vacancyId])
+  @@map("applications")
+}
+
+model Document {
+  id            String      @id @default(cuid())
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  type       DocumentType
+  fileUrl    String
+  uploadedAt DateTime     @default(now())
+
+  verificationStatus VerificationStatus @default(pending)
+  parsedData         Json?
+  parsingConfidence  Float?
+
+  @@map("documents")
+}
+
+// ==========================================================================
+// Audit log (Data Privacy Act compliance)
+// ==========================================================================
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  action     String
+  targetType String
+  targetId   String
+  details    Json?
+  createdAt  DateTime @default(now())
+
+  @@map("audit_logs")
+}
+model Session {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+}
