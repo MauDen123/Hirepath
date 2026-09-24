@@ -261,6 +261,11 @@ export default async function HrReviewPage({
                           <p className="text-sm text-gray-500">
                             Uploaded: {uploadedAtFormatted}
                           </p>
+                          {doc.parsingConfidence !== null && (
+                            <p className="text-sm text-gray-500">
+                              Parsing Confidence: {(doc.parsingConfidence * 100).toFixed(0)}%
+                            </p>
+                          )}
                         </div>
                         <div className="text-right">
                           <span className={verificationStatusBadgeClass}>

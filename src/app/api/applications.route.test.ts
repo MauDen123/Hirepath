@@ -264,6 +264,32 @@ describe('POST /api/applications', () => {
     (prisma.document.findMany as jest.Mock).mockResolvedValue(mockExistingDocuments);
     // Mock document creation
     (prisma.document.createMany as jest.Mock).mockResolvedValue({ count: 2 });
+    // Mock refetching application with documents
+    (prisma.application.findUnique as jest.Mock).mockResolvedValue({
+      ...mockApplication,
+      documents: [
+        {
+          id: 'doc-1',
+          type: 'pds',
+          fileUrl: '/uploads/pds-user-123.pdf',
+          applicationId: 'application-123',
+          verificationStatus: 'pending',
+          parsedData: null,
+          parsingConfidence: null,
+          uploadedAt: new Date(),
+        },
+        {
+          id: 'doc-2',
+          type: 'transcript_of_records',
+          fileUrl: '/uploads/transcript-user-123.pdf',
+          applicationId: 'application-123',
+          verificationStatus: 'pending',
+          parsedData: null,
+          parsingConfidence: null,
+          uploadedAt: new Date(),
+        }
+      ]
+    });
 
     const request = createMockRequest({ vacancyId: 'vacancy-123' });
 
@@ -271,7 +297,31 @@ describe('POST /api/applications', () => {
     const { POST } = await import('@/app/api/applications/route');
     const response = await POST(request);
     expect(response.status).toBe(201);
-    expect(await response.json()).toEqual(mockApplication);
+    expect(await response.json()).toEqual({
+      ...mockApplication,
+      documents: [
+        {
+          id: 'doc-1',
+          type: 'pds',
+          fileUrl: '/uploads/pds-user-123.pdf',
+          applicationId: 'application-123',
+          verificationStatus: 'pending',
+          parsedData: null,
+          parsingConfidence: null,
+          uploadedAt: expect.any(Date),
+        },
+        {
+          id: 'doc-2',
+          type: 'transcript_of_records',
+          fileUrl: '/uploads/transcript-user-123.pdf',
+          applicationId: 'application-123',
+          verificationStatus: 'pending',
+          parsedData: null,
+          parsingConfidence: null,
+          uploadedAt: expect.any(Date),
+        }
+      ]
+    });
 
     // Verify application was created with correct data
     expect(prisma.application.create).toHaveBeenCalledWith({
@@ -321,6 +371,21 @@ describe('POST /api/applications', () => {
           applicationId: 'application-123',
         },
       ]
+    });
+
+    // Verify application was refetched with documents
+    expect(prisma.application.findUnique).toHaveBeenCalledWith({
+      where: { id: 'application-123' },
+      include: {
+        vacancy: {
+          select: {
+            id: true,
+            positionTitle: true,
+            college: { select: { name: true } },
+          },
+        },
+        documents: true,
+      },
     });
   });
 

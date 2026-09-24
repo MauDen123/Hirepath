@@ -52,6 +52,11 @@ jest.mock('@/lib/prisma', () => {
         findUnique: jest.fn(),
       },
     },
+    session: {
+      create: jest.fn(),
+      validate: jest.fn(),
+      delete: jest.fn(),
+    },
   };
 });
 

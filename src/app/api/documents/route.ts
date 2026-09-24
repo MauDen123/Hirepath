@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/lib/auth';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { processDocument } from '@/lib/documentProcessing';
 
 export const runtime = 'nodejs';
 
@@ -144,6 +145,10 @@ export async function POST(request: Request) {
     // Construct the URL path (relative to public)
     const fileUrl = `/uploads/${applicationId}/${filename}`;
 
+    // Process the document to extract data
+    const fileExtension = file.name.split('.').pop() ?? '';
+    const { parsedData, parsingConfidence } = await processDocument(buffer, fileExtension, type);
+
     // Create document record
     const document = await prisma.document.create({
       data: {
@@ -151,8 +156,8 @@ export async function POST(request: Request) {
         type,
         fileUrl,
         verificationStatus: 'pending', // default
-        parsedData: null,
-        parsingConfidence: null,
+        parsedData,
+        parsingConfidence,
       },
     });
 

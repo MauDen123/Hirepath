@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { session, isPrismaAvailable } from '@/lib/prisma';
+import { session, isPrismaAvailable } from './lib/prisma';
 
 // This middleware runs in Node.js runtime to allow Prisma client usage for session validation
 export const runtime = 'nodejs';

@@ -151,7 +151,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
         <KraSection
           title="KRA I - Instruction (Max: 100 points)"
           subtitle="Teaching effectiveness, curriculum materials, and special projects"
-          fields=[
+          fields={[
             {
               label: "Teaching Effectiveness",
               name: "kra1TeachingEffectiveness",
@@ -170,7 +170,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
               maxPoints: 10,
               description: "Special projects, capstone projects, thesis/dissertation supervision"
             }
-          ]
+          ]}
           data={formData}
           onChange={handleFieldChange}
         />
@@ -179,7 +179,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
         <KraSection
           title="KRA II - Research, Innovation, and/or Creative Work (Max: 100 points)"
           subtitle="Research outputs, inventions, and creative works"
-          fields=[
+          fields={[
             {
               label: "Research Outputs Published",
               name: "kra2ResearchOutputs",
@@ -198,7 +198,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
               maxPoints: 100,
               description: "Artistic, literary, musical, dramatic works"
             }
-          ]
+          ]}
           data={formData}
           onChange={handleFieldChange}
         />
@@ -207,7 +207,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
         <KraSection
           title="KRA III - Extension Services (Max: 100 points)"
           subtitle="Service to institution, community, quality, and bonus"
-          fields=[
+          fields={[
             {
               label: "Service to the Institution",
               name: "kra3ServiceToInstitution",
@@ -232,7 +232,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
               maxPoints: 20,
               description: "Additional points for exceptional extension work (additive)"
             }
-          ]
+          ]}
           data={formData}
           onChange={handleFieldChange}
         />
@@ -241,7 +241,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
         <KraSection
           title="KRA IV - Professional Development (Max: 100 points)"
           subtitle="Professional organizations, continuing development, awards"
-          fields=[
+          fields={[
             {
               label: "Involvement in Professional Organizations",
               name: "kra4ProfessionalOrgs",
@@ -266,7 +266,7 @@ export default function ScoreForm({ applicationId, initialData, onUpdate }: Scor
               maxPoints: 20,
               description: "Prior academic/service experience (only for newly hired faculty)"
             }
-          ]
+          ]}
           data={formData}
           onChange={handleFieldChange}
         />

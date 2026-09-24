@@ -53,6 +53,11 @@ jest.mock('@/lib/prisma', () => {
         create: jest.fn(),
       },
     },
+    session: {
+      create: jest.fn(),
+      validate: jest.fn(),
+      delete: jest.fn(),
+    },
   };
 });
 
@@ -127,7 +132,7 @@ describe('POST /api/auth/register (mocked)', () => {
         name: 'Test User',
         email: 'test@example.com',
         passwordHash: 'hashed-password',
-        role: 'hr',
+        role: 'applicant',
       },
     });
   });
