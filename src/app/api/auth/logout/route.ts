@@ -1,25 +1,21 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { session } from '@/lib/prisma';
 import { cookies } from 'next/headers';
+
+export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   const cookieStore = await cookies();
-  const sessionId = cookieStore.get('session-id')?.value;
+  const sessionToken = cookieStore.get('session-id')?.value;
 
-  // Delete session from database if exists
-  if (sessionId) {
+  // Delete session using our session helper if exists
+  if (sessionToken) {
     try {
-      await prisma.session.deleteMany({
-        where: { id: sessionId },
-      });
+      await session.delete(sessionToken);
     } catch (err) {
-      // Handle missing table - nothing to delete if table doesn't exist
-      if (!(err instanceof Error && err.message &&
-            (err.message.includes('does not exist') ||
-             err.message.includes('UndefinedTable') ||
-             err.message.includes('relation does not exist')))) {
-        throw err;
-      }
+      // Handle errors - in Edge Runtime with JWT, this might fail if token is invalid
+      // but we still want to clear the cookie
+      console.warn('Session delete error:', err);
     }
   }
 

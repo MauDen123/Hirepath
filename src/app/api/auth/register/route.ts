@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma, session } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
+
+export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   try {
@@ -36,18 +38,20 @@ export async function POST(request: Request) {
         name,
         email,
         passwordHash: hashedPassword,
-        role: 'hr', // Default role for new users; adjust as needed
+        role: 'applicant', // Default role for new users; adjust as needed
       },
     });
 
-    // Create session (simple cookie-based approach)
-    const sessionId = `${user.id}-${Date.now()}-${Math.random()
-      .toString(36)
-      .substr(2, 9)}`;
+    // Create session using our session helper (works in both runtimes)
+    const sessionToken = await session.create({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    });
 
     // Set cookie (httpOnly for security)
     const cookieStore = await cookies();
-    cookieStore.set('session-id', sessionId, {
+    cookieStore.set('session-id', sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

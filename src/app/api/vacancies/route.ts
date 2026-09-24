@@ -2,8 +2,12 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/lib/auth';
 
+export const runtime = 'nodejs';
+
 export async function GET(request: Request) {
   try {
+    const cookieHeader = request.headers.get('cookie') || '';
+    console.log('Vacancies API cookie header:', cookieHeader);
     const user = await getCurrentUser(request);
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

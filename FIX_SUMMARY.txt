@@ -1,0 +1,50 @@
+Fix Summary for HRMO Vacancy Editing Internal Server Error
+
+ISSUE INVESTIGATED:
+Internal server error (500) when editing vacancies in HRMO interface, particularly when changing the Status field.
+
+FIXES APPLIED TO src/app/vacancies/[id]/edit/form.tsx:
+
+1. Added required attribute to "Number of Slots" input (line 228):
+   - Prevents empty string submission for non-nullable integer field
+   - Leverages HTML validation to ensure slots field has a value
+
+2. Updated number conversion logic in handleSubmit function:
+   - salaryGrade: Changed from ternary (empty string → null) to direct parseInt
+   - slots: Changed from ternary (empty string → null) to direct parseInt
+   - Reason: salaryGrade and slots are non-nullable integer fields in DB
+   - monthlySalary and validityMonths left unchanged (they are nullable)
+
+ROOT CAUSE ANALYSIS FOR STATUS FIELD ERRORS:
+The status field itself appears to be handled correctly in the form and API route.
+However, a potential underlying issue exists:
+
+If any vacancy records have NULL status in the database (despite the schema 
+defining status as VacancyStatus @default(draft)), this would cause:
+1. Form initialization to set status: null (from vacancy.status)
+2. Form submission to send status: null in request body
+3. API route to process: if (null !== undefined) → data.status = null
+4. Prisma update to fail because status column is not nullable
+5. Result: Internal server error (500)
+
+VERIFICATION STEPS:
+1. Check database for vacancies with null status:
+   SELECT id, status FROM vacancy WHERE status IS NULL;
+   
+2. If null status records exist, update them to a valid status:
+   UPDATE vacancy SET status = 'draft' WHERE status IS NULL;
+
+3. Alternatively, modify the vacancy edit page to handle null status:
+   In src/app/vacancies/[id]/edit/page.tsx, when creating the vacancy object:
+   status: vacancyRaw.status ?? 'draft',
+
+ADDITIONAL RECOMMENDATIONS:
+1. Add form validation to ensure status is always a valid VacancyStatus enum value
+2. Consider adding server-side validation in the API route for enum fields
+3. Run the code quality checker and webapp testing scripts once Python 
+   environment is available to verify all fixes
+
+PREVIOUSLY IMPLEMENTED SYSTEMS (UNCHANGED):
+- Authentication system fixes (register route using session.create())
+- CRRC evaluation system with KRA I-IV structure
+- Vacancies view synchronization between applicant and HRMO interfaces

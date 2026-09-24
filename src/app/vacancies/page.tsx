@@ -9,11 +9,11 @@ export default async function VacanciesPage() {
     // If no user, redirect to login (or return notFound? We'll redirect)
     // In server component we can't redirect directly; we can return a redirect via NextResponse?
     // Simpler: show a message to log in.
-    return notFound(); // or we could redirect; but for simplicity, we'll show notFound.
+    notFound(); // or we could redirect; but for simplicity, we'll show notFound.
   }
   // Only HR and admin can view vacancy management page
   if (user.role !== 'hr' && user.role !== 'admin') {
-    return notFound();
+    notFound();
   }
 
   const vacancies = await prisma.vacancy.findMany({

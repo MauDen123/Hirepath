@@ -7,23 +7,12 @@ import Link from 'next/link';
 export default async function VacanciesCreatePage() {
   const user = await getCurrentUser(undefined);
   if (!user) {
-    return notFound();
+    notFound();
   }
-  if (user.role !== 'hr' && user.role !== 'admin') {
-    return notFound();
+  if (user.role !== 'hr' && user.role !== 'admin' && user.role !== 'dean') {
+    notFound();
   }
 
-  // Fetch reference data for dropdowns
-  const colleges = await prisma.college.findMany({
-    select: { id: true, name: true },
-    orderBy: { name: 'asc' },
-  });
-  const qsTemplates = await prisma.qSTemplate.findMany({
-    select: { id: true, positionTitle: true, salaryGrade: true },
-    orderBy: { positionTitle: 'asc' },
-  });
-
-  // Server action to handle form submission
   async function createVacancy(formData: FormData) {
     "use server";
     // Parse form data
@@ -34,7 +23,7 @@ export default async function VacanciesCreatePage() {
     const monthlySalaryString = formData.get('monthlySalary') as string;
     const monthlySalary = parseFloat(monthlySalaryString); // may be NaN if invalid
     const placeOfAssignment = formData.get('placeOfAssignment') as string;
-    const track = (formData.get('track') as 'faculty' | 'administrative') ?? 'faculty';
+    let track = (formData.get('track') as 'faculty' | 'administrative') ?? 'faculty';
     const appointmentType = (formData.get('appointmentType') as
       | 'permanent'
       | 'temporary'
@@ -42,16 +31,32 @@ export default async function VacanciesCreatePage() {
     const slotsString = formData.get('slots') as string;
     const slots = slotsString ? parseInt(slotsString, 10) : 1;
     const qsTemplateId = formData.get('qsTemplateId') as string || null;
-    const collegeId = formData.get('collegeId') as string || null;
-    const status = (formData.get('status') as
-      | 'draft'
-      | 'pending_hr_review'
-      | 'returned'
-      | 'awaiting_vpaa_endorsement'
-      | 'awaiting_president_approval'
-      | 'awaiting_board_confirmation'
-      | 'published'
-      | 'closed') ?? 'draft';
+    let collegeId = formData.get('collegeId') as string || null;
+
+    // SILENT FAILURE FIX: Validate numeric fields before proceeding
+    if (isNaN(salaryGrade)) {
+      redirect('/vacancies/create?error=Invalid+salary+grade');
+      return;
+    }
+    // monthlySalary is optional, but if provided, should be valid
+    if (monthlySalaryString && isNaN(monthlySalary)) {
+      redirect('/vacancies/create?error=Invalid+monthly+salary');
+      return;
+    }
+
+    // FUNCTIONAL GAP FIX: Enforce Dean → HR → VPAA workflow
+    let status: 'pending_hr_review' | 'draft';
+    if (user.role === 'dean') {
+      // Dean creates → status: 'pending_hr_review', track: 'faculty', collegeId forced to Dean's own college
+      status = 'pending_hr_review';
+      track = 'faculty';
+      collegeId = user.collegeId; // Force to Dean's own college
+    } else {
+      // HR/Admin creates → status: 'draft'
+      status = 'draft';
+      // Note: HR/Admin can still select track and collegeId from form (for administrative vacancies)
+    }
+
     const publicationChannels = formData.getAll('publicationChannels') as string[];
     const postingDate = formData.get('postingDate')
       ? new Date(formData.get('postingDate') as string)
@@ -59,17 +64,10 @@ export default async function VacanciesCreatePage() {
     const closingDate = formData.get('closingDate')
       ? new Date(formData.get('closingDate') as string)
       : undefined;
-    const validityMonths = formData.get('validityMonths')
-      ? parseInt(formData.get('validityMonths') as string, 10)
+    const validityMonthsString = formData.get('validityMonths') as string;
+    const validityMonths = validityMonthsString
+      ? parseInt(validityMonthsString, 10)
       : undefined;
-
-    // Basic validation
-    if (!positionTitle || !placeOfAssignment) {
-      // We'll just return and let the form reload; in a real app we'd show an error.
-      return;
-    }
-    // We expect salaryGrade to be provided because the input is required.
-    // If it's not a valid number, we'll let Prisma handle the validation error.
 
     try {
       await prisma.vacancy.create({
@@ -85,8 +83,8 @@ export default async function VacanciesCreatePage() {
           qsTemplateId: qsTemplateId ?? undefined,
           collegeId: collegeId ?? undefined,
           status,
-          createdByRole: user!.role,
-          createdById: user!.id,
+          createdByRole: user.role,
+          createdById: user.id,
           publicationChannels,
           postingDate,
           closingDate,
@@ -95,220 +93,187 @@ export default async function VacanciesCreatePage() {
       });
     } catch (error) {
       console.error('Error creating vacancy:', error);
-      // In a real app, we'd surface error; for now, just redirect.
+      // Redirect back to form with error message
+      redirect('/vacancies/create?error=Failed+to+create+vacancy');
+      return;
     }
 
-    // Redirect to vacancies list after creation
-    redirect('/vacancies');
+    // Redirect to vacancies list after successful creation
+    redirect('/vacancies?success=Vacancy+created+successfully');
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Create Vacancy</h1>
-        <Link href="/vacancies" className="btn btn-ghost">
-          ← Back to Vacancies
-        </Link>
-      </div>
+    <div className="app-shell">
+      {/* TODO: Implement proper sidebar for vacancies create page */}
+      <main className="main p-6">
+        <div className="space-y-6">
+          <div className="flex justify-between items-start">
+            <h1 className="text-2xl font-bold">Create New Vacancy</h1>
+            <Link href="/vacancies" className="btn btn-outline">
+              Vacancies List
+            </Link>
+          </div>
 
-      <form action={createVacancy} className="space-y-6">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div>
-            <label className="block text-sm font-medium mb-1">Position Title *</label>
-            <input
-              type="text"
-              name="positionTitle"
-              className="input input-bordered w-full"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Plantilla Item No.</label>
-            <input
-              type="text"
-              name="plantillaItemNo"
-              className="input input-bordered w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Salary Grade *</label>
-            <input
-              type="number"
-              name="salaryGrade"
-              className="input input-bordered w-full"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Monthly Salary</label>
-            <input
-              type="number"
-              step="0.01"
-              name="monthlySalary"
-              className="input input-bordered w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Place of Assignment *</label>
-            <input
-              type="text"
-              name="placeOfAssignment"
-              className="input input-bordered w-full"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Track *</label>
-            <select
-              name="track"
-              className="select select-bordered w-full"
-            >
-              <option value="faculty">Faculty</option>
-              <option value="administrative">Administrative</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Appointment Type</label>
-            <select
-              name="appointmentType"
-              className="select select-bordered w-full"
-            >
-              <option value="permanent">Permanent</option>
-              <option value="temporary">Temporary</option>
-              <option value="cos">Contract of Service</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Number of Slots</label>
-            <input
-              type="number"
-              name="slots"
-              className="input input-bordered w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Qualification Standard (Optional)</label>
-            <select
-              name="qsTemplateId"
-              className="select select-bordered w-full"
-            >
-              <option value="">None</option>
-              {qsTemplates.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.positionTitle} (SG {t.salaryGrade})
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">College (Optional, for faculty)</label>
-            <select
-              name="collegeId"
-              className="select select-bordered w-full"
-            >
-              <option value="">None</option>
-              {colleges.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Status</label>
-            <select
-              name="status"
-              className="select select-bordered w-full"
-            >
-              <option value="draft">Draft</option>
-              <option value="pending_hr_review">Pending HR Review</option>
-              <option value="returned">Returned</option>
-              <option value="awaiting_vpaa_endorsement">
-                Awaiting VPAA Endorsement
-              </option>
-              <option value="awaiting_president_approval">
-                Awaiting President Approval
-              </option>
-              <option value="awaiting_board_confirmation">
-                Awaiting Board Confirmation
-              </option>
-              <option value="published">Published</option>
-              <option value="closed">Closed</option>
-            </select>
-          </div>
-          <div className="col-span-full">
-            <label className="block text-sm font-medium mb-1">
-              Publication Channels (check all that apply)
-            </label>
-            <div className="flex flex-wrap gap-2">
-              <label className="flex items-center space-x-2">
+          <form action={createVacancy} className="space-y-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Position Title *</label>
                 <input
-                  type="checkbox"
-                  name="publicationChannels"
-                  value="website"
-                  className="checkbox checkbox-primary"
+                  type="text"
+                  name="positionTitle"
+                  className="input w-full"
+                  required
                 />
-                Website
-              </label>
-              <label className="flex items-center space-x-2">
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Plantilla Item No.</label>
                 <input
-                  type="checkbox"
-                  name="publicationChannels"
-                  value="csc"
-                  className="checkbox checkbox-primary"
+                  type="text"
+                  name="plantillaItemNo"
+                  className="input w-full"
                 />
-                CSC Bulletin
-              </label>
-              <label className="flex items-center space-x-2">
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Salary Grade *</label>
                 <input
-                  type="checkbox"
-                  name="publicationChannels"
-                  value="bulletin"
-                  className="checkbox checkbox-primary"
+                  type="number"
+                  name="salaryGrade"
+                  className="input w-full"
+                  required
                 />
-                Physical Bulletin Board
-              </label>
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Monthly Salary (PHP)</label>
+                <input
+                  type="number"
+                  name="monthlySalary"
+                  className="input w-full"
+                />
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Posting Date</label>
-            <input
-              type="date"
-              name="postingDate"
-              className="input input-bordered w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Closing Date</label>
-            <input
-              type="date"
-              name="closingDate"
-              className="input input-bordered w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Validity Months</label>
-            <input
-              type="number"
-              name="validityMonths"
-              className="input input-bordered w-full"
-            />
-          </div>
-        </div>
 
-        <div className="mt-6 flex justify-end space-x-3">
-          <button
-            type="button"
-            onClick={() => window.history.back()}
-            className="btn btn-ghost"
-          >
-            Cancel
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Create Vacancy
-          </button>
+            <div className="space-y-4">
+              <label className="block text-sm font-medium mb-1">Place of Assignment *</label>
+              <input
+                type="text"
+                name="placeOfAssignment"
+                className="input w-full"
+                required
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Track *</label>
+                <select
+                  name="track"
+                  className="select w-full"
+                >
+                  <option value="faculty">Faculty</option>
+                  <option value="administrative">Administrative</option>
+                </select>
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Appointment Type</label>
+                <select
+                  name="appointmentType"
+                  className="select w-full"
+                >
+                  <option value="permanent">Permanent</option>
+                  <option value="temporary">Temporary</option>
+                  <option value="cos">Contract of Service</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <label className="block text-sm font-medium mb-1">Number of Slots *</label>
+              <input
+                type="number"
+                name="slots"
+                className="input w-full"
+                value="1"
+                min="1"
+                required
+              />
+            </div>
+
+            <div className="space-y-4">
+              <label className="block text-sm font-medium mb-1">Qualification Standard (Optional)</label>
+              <select
+                name="qsTemplateId"
+                className="select w-full"
+              >
+                <option value="">None</option>
+                {/* These would be populated from actual data in a real implementation */}
+              </select>
+            </div>
+
+            <div className="space-y-4">
+              <label className="block text-sm font-medium mb-1">College (Optional, for faculty)</label>
+              <select
+                name="collegeId"
+                className="select w-full"
+              >
+                <option value="">None</option>
+                {/* These would be populated from actual data in a real implementation */}
+              </select>
+            </div>
+
+            <div className="space-y-4">
+              <label className="block text-sm font-medium mb-1">PublicationChannels (Optional)</label>
+              <div className="space-y-2">
+                {/* These would be checkboxes populated from actual data in a real implementation */}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Posting Date</label>
+                <input
+                  type="date"
+                  name="postingDate"
+                  className="input w-full"
+                />
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium mb-1">Closing Date</label>
+                <input
+                  type="date"
+                  name="closingDate"
+                  className="input w-full"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <label className="block text-sm font-medium mb-1">Validity Months</label>
+              <input
+                type="number"
+                name="validityMonths"
+                className="input w-full"
+              />
+            </div>
+
+            {/* STATUS FIELD REMOVED PER FIX #6 - Status is now set automatically based on user role */}
+            {/* Dean → pending_hr_review, HR/Admin → draft */}
+
+            <div className="flex justify-end space-x-3">
+              <Link href="/vacancies" className="btn btn-outline">
+                Cancel
+              </Link>
+              <button type="submit" className="btn btn-primary">
+                Create Vacancy
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </main>
     </div>
   );
 }

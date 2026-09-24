@@ -53,19 +53,19 @@ function VacancyForm({
   const [formData, setFormData] = useState({
     positionTitle: vacancy.positionTitle,
     plantillaItemNo: vacancy.plantillaItemNo ?? '',
-    salaryGrade: vacancy.salaryGrade ?? '',
-    monthlySalary: vacancy.monthlySalary ?? '',
+    salaryGrade: vacancy.salaryGrade?.toString() ?? '',
+    monthlySalary: vacancy.monthlySalary?.toString() ?? '',
     placeOfAssignment: vacancy.placeOfAssignment,
     track: vacancy.track,
     appointmentType: vacancy.appointmentType,
-    slots: vacancy.slots ?? '',
+    slots: vacancy.slots?.toString() ?? '',
     qsTemplateId: vacancy.qsTemplateId ?? '',
     collegeId: vacancy.collegeId ?? '',
     status: vacancy.status,
     publicationChannels: vacancy.publicationChannels,
     postingDate: vacancy.postingDate ?? '',
     closingDate: vacancy.closingDate ?? '',
-    validityMonths: vacancy.validityMonths ?? '',
+    validityMonths: vacancy.validityMonths?.toString() ?? '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -110,10 +110,46 @@ function VacancyForm({
         body: JSON.stringify({
           ...formData,
           // Convert string values to numbers or null for number fields
-          salaryGrade: formData.salaryGrade === '' ? null : parseInt(formData.salaryGrade, 10),
-          monthlySalary: formData.monthlySalary === '' ? null : parseFloat(formData.monthlySalary),
-          slots: formData.slots === '' ? null : parseInt(formData.slots, 10),
-          validityMonths: formData.validityMonths === '' ? null : parseInt(formData.validityMonths, 10),
+          salaryGrade:
+            formData.salaryGrade.trim() === ''
+              ? undefined
+              : (() => {
+                  const parsed = parseInt(formData.salaryGrade, 10);
+                  if (isNaN(parsed)) {
+                    throw new Error('Salary Grade must be a valid number');
+                  }
+                  return parsed;
+                })(),
+          monthlySalary:
+            formData.monthlySalary.trim() === ''
+              ? null
+              : (() => {
+                  const parsed = parseFloat(formData.monthlySalary);
+                  if (isNaN(parsed)) {
+                    throw new Error('Monthly Salary must be a valid number');
+                  }
+                  return parsed;
+                })(),
+          slots:
+            formData.slots.trim() === ''
+              ? undefined
+              : (() => {
+                  const parsed = parseInt(formData.slots, 10);
+                  if (isNaN(parsed)) {
+                    throw new Error('Slots must be a valid number');
+                  }
+                  return parsed;
+                })(),
+          validityMonths:
+            formData.validityMonths.trim() === ''
+              ? null
+              : (() => {
+                  const parsed = parseInt(formData.validityMonths, 10);
+                  if (isNaN(parsed)) {
+                    throw new Error('Validity Months must be a valid number');
+                  }
+                  return parsed;
+                })(),
           publicationChannels: formData.publicationChannels,
           postingDate: formData.postingDate
             ? new Date(formData.postingDate)

@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -105,6 +104,9 @@ model User {
   email        String   @unique
   passwordHash String
   name         String
+  age           Int?
+  gender        String?
+  address       String?
   role         UserRole
   collegeId    String?  // set only for Dean accounts — VPAA is university-wide
   college      College? @relation("CollegeDeans", fields: [collegeId], references: [id])
@@ -119,6 +121,7 @@ model User {
 
   auditLogs AuditLog[]
   sessions Session[]
+  crrcEvaluations CrrcEvaluation[] @relation("EvaluatedBy")
 
   @@map("users")
 }
@@ -258,12 +261,60 @@ model Application {
   decisionNotes String?
 
   documents Document[]
+  crrcEvaluation CrrcEvaluation?
 
   submittedAt DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@unique([applicantId, vacancyId])
   @@map("applications")
+}
+
+// ==========================================================================
+// CRRC Evaluations (Career Rank Promotion Criteria)
+// ==========================================================================
+model CrrcEvaluation {
+  id            String      @id @default(cuid())
+  applicationId String      @unique
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  // KRA I - Instruction (max 100 points)
+  kra1TeachingEffectiveness   Float?  // max 60 (Student Evaluation 60% + Supervisor's Evaluation 40%)
+  kra1CurriculumMaterials     Float?  // max 30
+  kra1SpecialProjects         Float?  // max 10
+  kra1Total                   Float?  // computed: sum of KRA I, max 100
+
+  // KRA II - Research, Innovation, and/or Creative Work (max 100 points)
+  kra2ResearchOutputs         Float?  // max 100 - detailed breakdown from Annex I
+  kra2Inventions              Float?  // max 100
+  kra2CreativeWorks           Float?  // max 100
+  kra2Total                   Float?  // per Annex I rules, NOT a simple sum - confirm combination rule
+
+  // KRA III - Extension Services (max 100 points)
+  kra3ServiceToInstitution    Float?  // max 30
+  kra3ServiceToCommunity      Float?  // max 50
+  kra3QualityOfService        Float?  // max 20
+  kra3Bonus                   Float?  // max 20, additive
+  kra3Total                   Float?  // sum of KRA III components
+
+  // KRA IV - Professional Development (max 100 points)
+  kra4ProfessionalOrgs        Float?  // max 20
+  kra4ContinuingDevelopment   Float?  // max 60
+  kra4AwardsRecognition       Float?  // max 20
+  kra4NewHireBonus            Float?  // max 20, newly hired faculty only
+  kra4Total                   Float?  // sum of KRA IV components
+
+  finalWeightedScore          Float?  // after rank-based weighting is applied
+  recommendedSubRanks         Int?    // number of sub-ranks earned
+
+  evaluatedById  String
+  evaluatedBy    User     @relation("EvaluatedBy", fields: [evaluatedById], references: [id])
+  notes          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("crrc_evaluations")
 }
 
 model Document {

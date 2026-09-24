@@ -1,26 +1,21 @@
 
 > hirepath@0.1.0 dev
-> next dev -p 5000
+> next dev
 
-  ▲ Next.js 14.2.35
-  - Local:        http://localhost:5000
-  - Environments: .env
+⚠ Port 3000 is in use by process 19672, using available port 3001 instead.
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://26.177.97.11:3001
+- Environments: .env
+✓ Ready in 557ms
+✓ Running next.config.js took 20ms
+⨯ Another next dev server is already running.
 
- ✓ Starting...
- ✓ Ready in 1459ms
- ✓ Compiled /src/middleware in 314ms (72 modules)
- ○ Compiling / ...
- ✓ Compiled / in 2.4s (502 modules)
- GET / 200 in 2536ms
- ✓ Compiled in 249ms (246 modules)
- GET / 200 in 66ms
- GET / 200 in 114ms
- ○ Compiling /applicant ...
- ✓ Compiled /applicant in 712ms (549 modules)
- ✓ Compiled in 132ms (271 modules)
- ✓ Compiled /_not-found in 134ms (538 modules)
- GET /applicant/applications 404 in 87ms
- GET /applicant 200 in 64ms
- GET /applicant/documents 404 in 59ms
- GET /applicant 200 in 58ms
+- Local:        http://localhost:3000
+- PID:          19672
+- Dir:          F:\Coding\hirepath\hirepath
+- Log:          .next\dev\logs\next-development.log
+
+You can access the existing server at http://localhost:3000,
+or run taskkill /PID 19672 /F to stop it and start a new one.
 [?25h

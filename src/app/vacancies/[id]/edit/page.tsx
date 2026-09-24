@@ -10,10 +10,10 @@ export default async function VacancyEditPage(
   const params = await props.params;
   const user = await getCurrentUser(undefined);
   if (!user) {
-    return notFound();
+    notFound();
   }
   if (user.role !== 'hr' && user.role !== 'admin') {
-    return notFound();
+    notFound();
   }
 
   const vacancyId = params.id;
@@ -53,7 +53,7 @@ export default async function VacancyEditPage(
   ]);
 
   if (!vacancyRaw) {
-    return notFound();
+    notFound();
   }
 
   // Convert the Prisma vacancy object to the form-friendly shape
@@ -62,23 +62,23 @@ export default async function VacancyEditPage(
     id: vacancyRaw.id,
     positionTitle: vacancyRaw.positionTitle,
     plantillaItemNo: vacancyRaw.plantillaItemNo,
-    salaryGrade: vacancyRaw.salaryGrade !== null ? vacancyRaw.salaryGrade.toString() : null,
+    salaryGrade: vacancyRaw.salaryGrade !== null ? vacancyRaw.salaryGrade.toString() : '',
     monthlySalary: vacancyRaw.monthlySalary ? vacancyRaw.monthlySalary.toString() : null,
     placeOfAssignment: vacancyRaw.placeOfAssignment,
     track: vacancyRaw.track,
     appointmentType: vacancyRaw.appointmentType,
-    slots: vacancyRaw.slots !== null ? vacancyRaw.slots.toString() : null,
+    slots: vacancyRaw.slots !== null ? vacancyRaw.slots.toString() : '1',
     qsTemplateId: vacancyRaw.qsTemplateId,
     collegeId: vacancyRaw.collegeId,
     status: vacancyRaw.status,
     publicationChannels: vacancyRaw.publicationChannels,
     postingDate: vacancyRaw.postingDate
       ? vacancyRaw.postingDate.toISOString().split('T')[0]
-      : null,
+      : '',
     closingDate: vacancyRaw.closingDate
       ? vacancyRaw.closingDate.toISOString().split('T')[0]
-      : null,
-    validityMonths: vacancyRaw.validityMonths !== null ? vacancyRaw.validityMonths.toString() : null,
+      : '',
+    validityMonths: vacancyRaw.validityMonths !== null ? vacancyRaw.validityMonths.toString() : '',
     createdBy: vacancyRaw.createdBy
       ? { id: vacancyRaw.createdBy.id, name: vacancyRaw.createdBy.name }
       : null,

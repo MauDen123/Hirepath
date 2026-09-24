@@ -1,0 +1,1191 @@
+
+> hirepath@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://26.177.97.11:3000
+- Environments: .env
+✓ Ready in 533ms
+✓ Running next.config.js took 25ms
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+Prisma client initialized in lib/prisma.ts
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+Prisma client initialized in lib/prisma.ts
+ GET /applicant 200 in 1154ms (next.js: 129ms, proxy.ts: 588ms, application-code: 437ms)
+Prisma client initialized in lib/prisma.ts
+ POST /api/auth/login 200 in 599ms (next.js: 67ms, application-code: 531ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ GET /applicant 200 in 145ms (next.js: 6ms, proxy.ts: 7ms, application-code: 133ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ GET /applicant 200 in 170ms (next.js: 7ms, proxy.ts: 39ms, application-code: 124ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ GET /applicant 200 in 110ms (next.js: 7ms, proxy.ts: 10ms, application-code: 92ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ GET /applicant/profile 200 in 695ms (next.js: 603ms, proxy.ts: 8ms, application-code: 84ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ POST /applicant/profile 200 in 270ms (next.js: 11ms, proxy.ts: 41ms, application-code: 218ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ GET /applicant/profile 200 in 171ms (next.js: 4ms, proxy.ts: 42ms, application-code: 125ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant 200 in 178ms (next.js: 11ms, proxy.ts: 41ms, application-code: 125ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant 200 in 95ms (next.js: 7ms, proxy.ts: 9ms, application-code: 80ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant/applications 200 in 91ms (next.js: 43ms, proxy.ts: 8ms, application-code: 40ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant 200 in 58ms (next.js: 5ms, proxy.ts: 4ms, application-code: 49ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789549172494-1gls3n8x3","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789549172,"exp":1790153972,"expiresAt":"2026-09-23T08:59:32.494Z"}
+ POST /applicant/profile 200 in 242ms (next.js: 6ms, proxy.ts: 40ms, application-code: 196ms)
+ POST /api/auth/login 200 in 159ms (next.js: 4ms, application-code: 155ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550188722-4bay3vzpj
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550188722-4bay3vzpj","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550188,"exp":1790154988,"expiresAt":"2026-09-23T09:16:28.722Z"}
+ GET /applicant/profile 200 in 189ms (next.js: 5ms, proxy.ts: 50ms, application-code: 134ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550188722-4bay3vzpj
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550188722-4bay3vzpj","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550188,"exp":1790154988,"expiresAt":"2026-09-23T09:16:28.722Z"}
+ POST /applicant/profile 200 in 179ms (next.js: 5ms, proxy.ts: 51ms, application-code: 124ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550188722-4bay3vzpj
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550188722-4bay3vzpj","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550188,"exp":1790154988,"expiresAt":"2026-09-23T09:16:28.722Z"}
+ GET /applicant/profile 200 in 170ms (next.js: 6ms, proxy.ts: 47ms, application-code: 118ms)
+ GET / 200 in 1474ms (next.js: 1356ms, proxy.ts: 3ms, application-code: 114ms)
+ POST /api/auth/login 200 in 139ms (next.js: 3ms, application-code: 136ms)
+ POST /api/auth/login 200 in 91ms (next.js: 4ms, application-code: 87ms)
+ POST /api/auth/login 200 in 143ms (next.js: 4ms, application-code: 139ms)
+ POST /api/auth/login 200 in 98ms (next.js: 3ms, application-code: 94ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+ GET /applicant/profile 200 in 246ms (next.js: 9ms, proxy.ts: 7ms, application-code: 230ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+ POST /applicant/profile 200 in 185ms (next.js: 6ms, proxy.ts: 49ms, application-code: 130ms)
+○ Compiling /api/me ...
+ GET /api/me 200 in 16.3s (next.js: 14.6s, application-code: 1728ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+⨯ Error: Failed to find Server Action. This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at ignore-listed frames
+⨯ Error: Failed to find Server Action. This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at ignore-listed frames {
+  page: '/applicant/profile'
+}
+○ Compiling /_error ...
+ POST /applicant/profile 500 in 9.3s (next.js: 8.0s, proxy.ts: 455ms, application-code: 856ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+ POST /applicant/profile 200 in 216ms (next.js: 16ms, proxy.ts: 50ms, application-code: 150ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+ POST /applicant/profile 200 in 200ms (next.js: 7ms, proxy.ts: 46ms, application-code: 146ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+ POST /applicant/profile 200 in 91ms (next.js: 6ms, proxy.ts: 10ms, application-code: 75ms)
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789550544147-r3n4x6cn1","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789550544,"exp":1790155344,"expiresAt":"2026-09-23T09:22:24.147Z"}
+ POST /applicant/profile 200 in 83ms (next.js: 8ms, proxy.ts: 7ms, application-code: 69ms)
+ GET /api/me 200 in 197ms (next.js: 6ms, application-code: 190ms)
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:16
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(age) || age < 0)...
+     |                ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+ GET /applicant 500 in 631ms (next.js: 536ms, proxy.ts: 45ms, application-code: 50ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant/applications 500 in 52ms (next.js: 41ms, proxy.ts: 4ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant 500 in 24ms (next.js: 13ms, proxy.ts: 5ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+ GET /applicant/documents 500 in 91ms (next.js: 80ms, proxy.ts: 4ms, application-code: 6ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant 500 in 22ms (next.js: 12ms, proxy.ts: 4ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+ GET /career-path 500 in 107ms (next.js: 92ms, proxy.ts: 4ms, application-code: 10ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant/documents 500 in 26ms (next.js: 13ms, proxy.ts: 5ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant/vacancies 500 in 58ms (next.js: 46ms, proxy.ts: 5ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant/applications 500 in 23ms (next.js: 13ms, proxy.ts: 4ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[middleware] Session token: cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7
+[middleware] Session data: {"id":"cmu3uo59p0007e8tay7jp63mf-1789548640520-l46w3nlv7","userId":"cmu3uo59p0007e8tay7jp63mf","email":"juana.cruz@example.com","role":"applicant","iat":1789548640,"exp":1790153440,"expiresAt":"2026-09-23T08:50:40.520Z"}
+ GET /applicant 500 in 23ms (next.js: 11ms, proxy.ts: 4ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+ GET / 500 in 21ms (next.js: 12ms, proxy.ts: 2ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:35:20)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:35:20)
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:35:20
+Error: Expected ')', got 'if'
+  33 |     // Parse age (optional)
+  34 |     const age = ageStr ? parseInt(ageStr, 10) : null;
+> 35 |     if (ageStr     if (ageStr if (ageStr && (isNaN(age) || age < 0))if (ageStr && (isNaN(a...
+     |                    ^^
+  36 |       throw new Error('Age must be a valid positive number');
+  37 |     }
+  38 |
+
+Parsing ecmascript source code failed 
+ GET / 200 in 39ms (next.js: 7ms, proxy.ts: 1.9ms, application-code: 31ms)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 24ms (next.js: 15ms, proxy.ts: 3ms, application-code: 7ms)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 19ms (next.js: 11ms, proxy.ts: 2ms, application-code: 6ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 16ms (next.js: 9ms, proxy.ts: 1.9ms, application-code: 5ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 19ms (next.js: 10ms, proxy.ts: 1.8ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 18ms (next.js: 10ms, proxy.ts: 1.6ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 21ms (next.js: 13ms, proxy.ts: 2ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 18ms (next.js: 10ms, proxy.ts: 2ms, application-code: 6ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+ GET / 500 in 21ms (next.js: 13ms, proxy.ts: 1.8ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/applicant/profile/page.tsx:40:29)
+    at <unknown> (Error: (./src/app/applicant/profile/page.tsx:40:29)
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/applicant/profile/page.tsx:40:29
+Error: Expression expected
+  38 |
+  39 |     // Update user in database
+> 40 |       where: { id: user.id },
+     |                             ^
+  41 |       data: {
+  42 |         name,
+  43 |         email,
+
+Parsing ecmascript source code failed 
+[?25h

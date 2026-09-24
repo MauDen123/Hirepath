@@ -12,22 +12,33 @@ const roles = [
 
 export default function RoleSelect() {
   const [selected, setSelected] = useState<(typeof roles)[number]>(roles[0]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
-    // Get form values
-    const form = e.currentTarget as HTMLFormElement;
-    const emailInput = form.elements.namedItem('email') as HTMLInputElement;
-    const passwordInput = form.elements.namedItem(
-      'password'
-    ) as HTMLInputElement;
-
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    setError(null);
+    setLoading(true);
 
     try {
+      // Get form values
+      const form = e.currentTarget as HTMLFormElement;
+      const emailInput = form.elements.namedItem('email') as HTMLInputElement;
+      const passwordInput = form.elements.namedItem(
+        'password'
+      ) as HTMLInputElement;
+
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      // Basic client-side validation
+      if (!email || !password) {
+        setError('Please enter both email and password');
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         credentials: 'include',
@@ -39,9 +50,9 @@ export default function RoleSelect() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        // Show error to user - for now, just log it
-        console.error('Login failed:', errorData);
-        // TODO: Show error message to user in UI
+        const errorMessage = errorData.error || 'Login failed. Please check your credentials.';
+        setError(errorMessage);
+        setLoading(false);
         return;
       }
 
@@ -49,7 +60,10 @@ export default function RoleSelect() {
       router.push(selected.href);
     } catch (error) {
       console.error('Login error:', error);
-      // TODO: Show error message to user in UI
+      setError('An unexpected error occurred. Please try again.');
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -84,6 +98,7 @@ export default function RoleSelect() {
           type: 'email',
           placeholder: 'you@plm.edu.ph',
           name: 'email',
+          onChange: () => setError(null),
         })
       ),
       React.createElement(
@@ -95,12 +110,22 @@ export default function RoleSelect() {
           type: 'password',
           placeholder: '••••••••••',
           name: 'password',
+          onChange: () => setError(null),
         })
+      ),
+      error && React.createElement(
+        'div',
+        { className: 'error-message' },
+        React.createElement('p', { className: 'error-text' }, error)
       ),
       React.createElement(
         'button',
-        { type: 'submit', className: 'btn btn-primary login-submit' },
-        `Continue as ${selected.label}`
+        {
+          type: 'submit',
+          className: `btn btn-primary login-submit${loading ? ' loading' : ''}`,
+          disabled: loading
+        },
+        loading ? 'Signing in...' : `Continue as ${selected.label}`
       )
     )
   );

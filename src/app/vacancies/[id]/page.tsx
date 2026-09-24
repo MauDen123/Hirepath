@@ -9,7 +9,7 @@ export default async function VacancyDetailPage(
   const params = await props.params;
   const user = await getCurrentUser(undefined);
   if (!user) {
-    return notFound();
+    notFound();
   }
   // For viewing, we could allow any authenticated user, or restrict to HR/admin.
   // We'll allow any authenticated user to view vacancy details.
@@ -34,7 +34,7 @@ export default async function VacancyDetailPage(
   });
 
   if (!vacancy) {
-    return notFound();
+    notFound();
   }
 
   return (

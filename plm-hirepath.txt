@@ -1,0 +1,417 @@
+PLM-HirePath: A Web-Based Recruitment and Career Pathing System with NLP-Based Personal Data Sheet and Visual Skill Roadmapping
+A Thesis Presented to The Undergraduate Program College of Information Systems and Technology Management Pamantasan ng Lungsod ng Maynila
+In Partial Fulfillment of the Requirements for the Degree (Bachelor of Science in Information Technology) __________________________________
+By Daban, John Clyde Marcus T. Villanueva, Maurice Raiden G.
+Thesis Adviser Ariel Antwaun Rolando C. Sison
+Decemmber 2025
+
+TABLE OF CONTENTS
+
+TABLE OF CONTENTS
+
+i
+
+LIST OF FIGURES
+
+ii
+
+LIST OF TABLES
+
+iii
+
+INTRODUCTION
+
+1.1 Background of the Study
+
+1
+
+1.2 Statement of the Problems
+
+2
+
+1.3 Objectives
+
+3
+
+ 1.3.1 General Objectives
+
+3
+
+1.3.2 Specific Objectives
+
+3
+
+1.4 Scope and Limitation
+
+4
+
+ 1.4.1 Scope
+
+4
+
+ 1.4.2 Limitations
+
+4
+
+SYSTEM ANALYSIS
+
+2.1 Related Literature
+
+5
+
+2.2 Related Studies
+
+7
+
+2.3 Operational Definition of Terms
+
+8
+
+2.4 References
+
+10
+
+SYSTEM ANALYSIS
+
+2.1 Related Literature
+
+5
+
+2.2 Related Studies
+
+7
+
+2.3 Operational Definition of Terms
+
+8
+
+System Design And Development
+
+3.1 System Design
+
+10
+
+3.1.1 System Flowchart
+
+10
+
+3.1.2Data Flow Diagram (DFD) and System Architecture
+
+11
+
+3.2 System Development
+
+12
+
+3.3 System Hardware and Software Requirements
+
+13
+
+3.4 Instruments Used for System Evaluation
+
+14
+
+3.4.1System Evaluation Framework
+
+References 
+
+16
+
+
+
+
+
+LIST OF FIGURES
+
+System Flow Chart
+
+10
+
+Data Flow Diagram
+
+11
+
+System Architecture
+
+12
+
+CHAPTER 1 INTRODUCTION 1.1 Background of the Study Recruitment in public academic institutions like Pamantasan ng Lungsod ng Maynila (PLM) is governed by both institutional discretion and national standards. Administrative hiring follows structured publication and scoring processes, while faculty recruitment utilizes the College Review and Ranking Committee (CRRC) Evaluation Form, which provides a standardized scoring mechanism across all colleges. Despite having a common evaluation form, recruitment remains time-consuming because the screening of applicant documents is still largely manual. The Human Resources (HR) department reviews submissions such as the Personal Data Sheet (PDS), Work Experience Sheet (WES), eligibility certificates, and training records against Qualification Standards (QS) from the Civil Service Commission (CSC). This manual process creates bottlenecks, delays, and opportunities for subjective oversight. This study introduces PLM-HirePath, a web-based recruitment and career pathing system designed to automate document parsing, integrate CRRC scoring templates, and provide career development visualization. By leveraging Natural Language Processing (NLP) and structured digital workflows, the system aims to streamline hiring workflows, reduce processing time, improve consistency, and ensure compliance with public-sector hiring standards. Furthermore, it supports career development by mapping qualifications and competencies across faculty ranks and administrative roles, fostering institutional transparency and growth.
+1
+
+1.2 Statement of the Problem The recruitment and career development processes at PLM are standardized at the evaluation stage through the CRRC Evaluation Form but remain heavily manual at the document screening stage. While administrative and faculty vacancies follow CSC Qualification Standards and CRRC scoring, HR personnel must still manually read and validate applicant documents, consuming significant time and resources. The lack of automated screening delays processing and makes it difficult to quickly align applicant qualifications with institutional requirements. Although CRRC forms provide uniformity in faculty scoring, the preparation of applicant profiles and supporting data for committee review remains inefficient. 1.2.1 How can the applicant screening process at PLM be systematized and streamlined through automated document parsing and criteria-based filtering, reducing the time required for manual review while ensuring alignment with Qualification Standards (QS) and CRRC evaluation? 1.2.2 How can a career development tool be designed to visually map qualifications, competencies, and progression paths within PLM, reflecting both administrative and faculty tracks? 1.2.3 How can a centralized recruitment and career development platform enforce secure, role-based access while aligning with public-sector hiring standards and safeguarding applicant data?
+2
+
+1.3 Objectives of the Study 1.3.1 General Objective To design and develop PLM-HirePath, a centralized web-based platform that automates document screening, streamlines CRRC faculty evaluations, and visualizes career progression, thereby reducing manual workload while ensuring compliance with PLM's recruitment workflows and public-sector standards. 1.3.2 Specific Objectives 1.3.2.1 To develop a document screening module that can analyze and filter applicant submissions (e.g., PDS, Work Experience Sheet, certifications) against the official Qualification Standards (QS) and pre-fill relevant sections of the CRRC Evaluation Form based on:
+ Work experience (from fully accomplished Work Experience Sheet, considering length and relevance)
+ Educational background (degree, level, and field relevance)
+ Training and seminars attended (from PDS and supporting documents)
+ Professional licenses or certifications (e.g., PRC, NCII)
+ Civil service eligibility and examination results
+ Skills and competencies from PDS or supporting documents
+ Faculty evaluation results pre-structured into the CRRC Evaluation Form for consistency across colleges
+1.3.2.2 To create a visual interface that illustrates structured career progression within PLM, showing required qualifications, skill sets, and role transitions across administrative and faculty tracks. 1.3.2.3 To implement a role-based web platform with distinct functionalities for applicants, HR officers, and administrators, supporting vacancy requests, application
+3
+
+tracking, CRRC scoring integration, career planning, and compliance with hiring regulations.
+1.4 Scope and Limitations 1.4.1 Scope The PLM-HirePath system will support end-to-end recruitment workflows for administrative, faculty, Contract of Service (COS) faculty, and COS administrative positions. It will accommodate three primary user roles: applicants, HR personnel, and administrators. The platform will facilitate vacancy creation, document submission, automated applicant screening, structured CRRC evaluation integration, and career path visualization. 1.4.2 Limitations The effectiveness of the system may be influenced by the quality and consistency of submitted documents. NLP-based parsing accuracy may vary depending on document formatting and content clarity. The platform will not include modules for onboarding, interview scheduling, or live proctoring in this phase. It is designed to complement, not replace, PLM's official HR records and plantilla system. Final hiring decisions will remain under the authority of HR officers and the CRRC committees.
+4
+
+CHAPTER 2
+SYSTEM ANALYSIS
+2.1 RELATED LITERATURE
+Recent reforms in Philippine public-sector human resource management and higher education governance provide the compliance backbone for a role-based recruitment platform tailored to PLM's faculty and administrative hiring. The Civil Service Commission's ORA-OHRA and PRIME-HRM maturity guidance remain central to standardizing recruitment, selection, and placement processes (Civil Service Commission, n.d.). The Data Privacy Act of 2012 further mandates privacy-by-design principles across digital workflows (National Privacy Commission, 2012).
+Given the prevalence of contract-of-service (COS) and part-time arrangements in universities, the DBM-COA-CSC Joint Circular No. 1, s. 2022 clarified documentation, deliverables, and oversight for non-plantilla roles, providing a practical basis for parallel workflows in the system (DBM-COA-CSC, 2022). CHED's flexible learning guidance during and after the COVID-19 pandemic catalyzed sustained digitization of academic processes, indirectly accelerating digitized HR interfaces in higher education institutions (Commission on Higher Education, 2020).
+Local labor market analyses emphasize talent constraints and the need to align qualifications with institutional demands. Albert et al. (2020) highlighted discipline-specific gaps, particularly in STEM, reinforcing the rationale for configurable, evidence-based selection matrices. Complementary government efforts to streamline service delivery through citizen's charters and digital-by-default mandates reinforce expectations for visible timelines, status updates, and audit trails in recruitment portals (Anti-Red Tape Authority, n.d.).
+International literature on algorithmic hiring cautions against opaque automation and supports human-in-the-loop designs. Raghavan, Barocas, Kleinberg, and Levy (2020) reviewed mitigation strategies across hiring pipelines and argued for transparency, validation, and documentation. Kellogg, Valentine, and Christin (2020) synthesized how algorithms reshape work and decision-making, recommending governance mechanisms that preserve accountability. At the governance level, the NIST AI Risk Management Framework (2023) provides a life-cycle approach to document assumptions, monitor drift, and evaluate harms in socio-technical systems.
+Higher education-specific literature underscores the importance of clear, transparent academic career structures. The OECD (2021) argued that predictable progression, transparent criteria, and recognition of diverse contributions improve retention and performance. Strategic reports on international academic hiring connect talent acquisition quality to research and reputational outcomes, emphasizing accurate job information, frictionless processes, and equity-aware practices (Times Higher Education, 2023).
+5
+
+Skill and occupation taxonomies remain critical for moving beyond keyword matching to competency-level alignment. ESCO and the ONET content model provide stable ontologies for mapping coursework, certifications, and job requirements to applicant profiles (European Commission, n.d.; ONET Resource Center, n.d.). Adjacent guidance from professional bodies likewise stresses validation and candidate communication for AI-enabled recruiting (Society for Human Resource Management, 2022).
+Institutional enablement matters as much as compliance. World Bank assessments of public-sector digitization point to platform interoperability, data governance, and user-centered process redesign as preconditions for durable transformation (World Bank, 2021). These findings support PLM's role-based architecture spanning applicants, HR officers, and administrators, with shared data models and standardized evaluation capture.
+Recent regional literature further contextualizes AI governance in Southeast Asia. Putra (2024) and Tan (2023) highlight structural barriers, policy fragmentation, and ethical concerns in ASEAN's AI adoption, with implications for education and public service. Hananto (2025) compares adoption trends across Southeast Asian countries, identifying leadership and infrastructure as key differentiators. These insights reinforce the need for PLM's system to be both technically sound and policy-aware.
+Finally, sociotechnical frameworks offer conceptual grounding for human-centered AI. Xu and Gao (2024) propose an intelligent sociotechnical systems (iSTS) model that supports layered human oversight. Kudina and van de Poel (2024) argue that fairness and accountability in AI systems depend on broader institutional contexts--an important consideration for PLM's evaluator workflows and override mechanisms.
+6
+
+2.2 RELATED STUDIES
+Local studies on government recruitment and higher education operations highlight implementation realities that a PLM-specific system must address. A descriptive assessment of recruitment, selection, and promotion processes in a Philippine provincial government found that merit selection plans were implemented, yet delays, documentation burden, and interview difficulty remained top pain points (Pantoja & De Castro, 2021). These findings motivate platform features such as service-level agreement monitoring, structured interview rubrics, and applicant status visibility.
+Policy-oriented evidence on COS and job order workers consolidated in the DBM-COA-CSC Joint Circular No. 1, s. 2022 functions as a national practice study, articulating documentation, deliverables, and control mechanisms tailored to non-plantilla engagements (DBM-COA-CSC, 2022). Philippine labor market analyses during the pandemic documented discipline-specific skill shortages and mismatches (Albert et al., 2020), reinforcing the case for strict qualification standards-aligned screening and discipline-sensitive scoring templates. CHED's guidance on flexible learning catalyzed
+HEI-wide digitization initiatives and remote evaluation practices, providing an empirical backdrop for sustained digital recruitment and evaluation (Commission on Higher Education, 2020).
+International studies provide complementary evidence for algorithmic decision-support, fairness, and academic career structuring. Raghavan et al. (2020) found that transparency in features, bias audits, and human oversight improve fairness and legitimacy. The U.S. Equal Employment Opportunity Commission (2022) synthesized enforcement perspectives on AI use in employment decisions, translating into practical requirements for reasonable accommodation, validation, and adverse-impact monitoring. The NIST AI Risk Management Framework (2023) consolidates cross-sector cases into a governance framework for mapping harms, managing bias, and documenting decisions.
+The OECD's (2021) research careers analysis offers comparative evidence on progression structures and evaluation criteria. Times Higher Education (2023) aggregates institutional practices linking talent acquisition to research performance, reinforcing standardized postings, qualification standards visibility, and status tracking. Andaya, Orlina, and Ilustre (2025) provide a scoping review of digital governance in the Philippines, identifying infrastructure gaps, policy fragmentation, and citizen engagement challenges--factors that PLM's system must address through modularity and transparency.
+7
+
+2.3 Operational Definition of Terms
+AI Recruitment System - A digital platform that utilizes artificial intelligence to screen, rank, and match applicants to job vacancies based on predefined criteria.
+Algorithmic Management - The use of software and algorithms to assign, evaluate, and optimize tasks traditionally managed by human supervisors.
+Civil Service Commission (CSC) Guidelines - Policies, rules, and memoranda issued by the Philippine Civil Service Commission to ensure merit-based recruitment, selection, and promotion in government.
+COA-DBM (Commission on Audit - Department of Budget and Management) - Refers to two key oversight agencies in the Philippine government. The Commission on Audit (COA) is responsible for auditing government funds and ensuring accountability in public financial management. The Department of Budget and Management (DBM) oversees the preparation and implementation of the national budget, including organizational structures and staffing patterns. Together, COA and DBM play a critical role in the governance of public sector human resources, particularly in ensuring that job classifications, staffing, and competency standards align with legal, fiscal, and organizational requirements.
+Compliance Standards - Legal and institutional guidelines that govern recruitment practices, including civil service rules, merit systems, and accessibility mandates.
+Contract of Service (COS) - A non-plantilla employment arrangement in government institutions where personnel are hired through contracts specifying deliverables, timelines, and compensation without conferring permanent civil service status.
+Data Privacy Act of 2012 - Philippine legislation mandating the protection of personal information, requiring privacy-by-design principles and secure data handling in digital systems.
+Digital-by-Default Mandate - A government policy requiring that public services be designed for online delivery as the primary mode, with offline alternatives only when necessary.
+Equity in Hiring - The fair and impartial treatment of applicants, ensuring that recruitment processes do not discriminate based on gender, disability, ethnicity, or other protected characteristics.
+GovTech - A framework for digital transformation in government, emphasizing technology-driven public service delivery, transparency, and citizen engagement.
+Human-in-the-Loop (HITL) - A system design approach in which human oversight and decision-making remain integral to AI-assisted processes to ensure fairness, accountability, and contextual judgment.
+8
+
+Merit Selection Plan (MSP) - A formal recruitment and promotion framework in government institutions that ensures candidates are evaluated based on qualifications, competencies, and performance. ORA-OHRA - The Civil Service Commission's Omnibus Rules on Appointments and Other Human Resource Actions, which standardize recruitment, selection, and placement procedures in government. PRIME-HRM - The CSC's Program to Institutionalize Meritocracy and Excellence in Human Resource Management, providing maturity-level guidance for HR processes in the public sector. Skill and Occupation Taxonomy - A structured classification system for mapping job roles, skills, and qualifications, facilitating competency-based recruitment and workforce alignment.
+9
+
+Chapter 3 SYSTEM DESIGN AND DEVELOPMENT 3.1 System Design PLM-HirePath is a web-based, role-driven recruitment and career pathing system designed to automate and unify the hiring workflows of Pamantasan ng Lungsod ng Maynila (PLM). The system integrates structured digital processes with intelligent document parsing powered by local AI models to support both administrative and faculty hiring tracks. Its design emphasizes compliance with Civil Service Commission (CSC) Qualification Standards (QS), alignment with the College Review and Ranking Committee (CRRC) evaluation framework, and transparent career progression visualization for internal growth. 3.1.1 System Flowchart The core operational sequence of PLM-HirePath follows a well-defined pipeline:
+10
+
+3.1.2 Data Flow Diagram (DFD) and System Architecture Context Diagram (DFD Level 0) At the highest level, PLM-HirePath interacts with four external entities:
+System Architecture PLM-HirePath follows a 3-tier web application architecture:
+3.2 System Development 11
+
+The development of PLM-HirePath followed an Agile Kanban methodology, inspired by practices used in systems like EduRate. The workflow was organized into six iterative phases: Requirements Gathering: Collaborated with PLM HR and academic affairs staff to map existing manual processes and define digital requirements. UI/UX & System Design: Created wireframes, role-based dashboards, and database schemas based on CSC, CHED, and COA-DBM-CSC guidelines. Development: Implemented features incrementally using TypeScript, Prisma, and Ollama integration, with weekly internal demos. Testing: Conducted unit, integration, and user acceptance testing (UAT) with PLM HR personnel acting as primary testers. Deployment: Staged on a local Windows Server for pilot testing. Review & Refinement: Incorporated feedback from HR staff to refine AI parsing accuracy, form usability, and status transition logic. This iterative approach ensured the system remained user-centered, policy-compliant, and operationally feasible within PLM's administrative context.
+3.3 System Hardware and Software Requirements 12
+
+Hardware
+
+Software
+
+Client Devices: Standard desktops, Frontend: Next.js 14 (App Router),
+
+laptops, or tablets with modern browsers TypeScript, Tailwind CSS, ShadCN/UI,
+
+(Chrome, Edge, Firefox).
+
+React Flow (for career pathing)
+
+Server: Windows Server (2019 or later) Backend: Node.js 20+, Next.js API routes,
+
+with:
+
+NextAuth.js for auth
+
+Minimum 8GB RAM
+
+Database: PostgreSQL 15+, managed via Prisma ORM
+
+4-core CPU
+
+AI/NLP Engine: Local Ollama instance
+
+100GB SSD storage (for OS, app, running llava (for OCR) and llama3 (for
+
+database, and document uploads)
+
+named entity recognition and structured
+
+extraction)
+
+Stable LAN/WAN connectivity
+
+Email Service: Nodemailer with SMTP (e.g., PLM's institutional email server)
+
+Deployment: IIS with URL Rewrite Module and reverse proxy to Next.js (via next start)
+
+Compliance: Designed in accordance with the Data Privacy Act of 2012 (RA 10173), implementing:
+
+Role-based access control (RBAC),
+
+Encryption at rest and in transit,
+
+Audit logging of sensitive actions,
+
+Data minimization and purpose limitation principles.
+
+13
+
+3.4 Instruments Used for System Evaluation To assess the effectiveness and quality of PLM-HirePath, a formal system evaluation will be conducted using internationally recognized standards.
+3.4.1 System Evaluation Framework Standard: ISO/IEC 25010 - Systems and software Quality Requirements and Evaluation (SQuaRE) Quality Characteristics Measured: Functional Suitability: Does the system meet recruitment and career pathing requirements? Usability: Is the interface intuitive for HR, Deans, and applicants? Reliability: Does the system perform consistently under load? Security: Are applicant data and evaluations protected per Data Privacy Act? Maintainability: Can updates (e.g., new QS templates) be easily deployed? Respondents: PLM HR staff, Deans, and select applicants (during pilot). Population (N): Estimated at 20 potential users (based on PLM HR and college leadership structure). Sample Size (n): Calculated using Slovin's formula at 95% confidence level:
+Evaluation Tool: A 5-point Likert scale questionnaire, where:
+14
+
+Mean Range 1.00 - 1.80 1.81 - 2.60 2.61 - 3.40 3.41 - 4.20 4.21 - 5.00
+
+Interpretation Extremely Effective Very Effective Moderately Effective Slightly Effective Not Effective
+
+15
+
+References
+
+Albert, J., et al. (2020). Labor market structures and skills in the Philippines. Philippine
+
+Institute
+
+for
+
+Development
+
+Studies.
+
+https://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps2128.pdf
+
+Andaya, E. J., Orlina, R. J. G., & Ilustre, R. G. (2025). Digital governance in the Philippines: A scoping review of current challenges and opportunities. Global Sustainability Research, 4(1). https://doi.org/10.56556/gssr.v4i1.1204
+
+Anti-Red Tape Authority. (n.d.). https://arta.gov.ph/about/citizens-charter/
+
+Citizen's
+
+charter
+
+handbook.
+
+Commission on Higher Education. (2020). CMO No. 4, s. 2020 - Flexible learning guidelines. https://chedro3.ched.gov.ph/wp-content/uploads/2020/09/CMO-No.-4-s.-2020-Guidelines -on-the-Implementation-of-Flexible-Learning.pdf
+
+Civil Service Commission. (n.d.). 2017 Omnibus rules on appointments and other HR actions. https://csc.gov.ph/downloads/2017-oraohra
+
+DBM-COA-CSC. (2022). Joint Circular No. 1, s. 2022: Guidelines on contract of
+
+service
+
+and
+
+job
+
+order
+
+workers
+
+in
+
+the
+
+government.
+
+https://www.dbm.gov.ph/index.php/fy-2022?view=article&id=1576&catid=66
+
+European
+
+Commission.
+
+(n.d.).
+
+ESCO
+
+handbook.
+
+https://www.skillsforemployment.org/sites/default/files/2024-01/edmsp1_212824.pdf
+
+Hananto, A. (2025). AI adoption in Southeast Asia: Who leads, who lags? Seasia.co. https://seasia.co/2025/07/16/ai-adoption-in-southeast-asia-who-leads-who-lags
+
+Kellogg, K. C., Valentine, M. A., & Christin, A. (2020). Algorithms at work: The new contested terrain of control. Academy of Management Annals, 14(1), 366-410. https://doi.org/10.5465/annals.2018.0174
+
+Kudina, O., & van de Poel, I. (2024). A sociotechnical system perspective on AI. Minds and Machines, 34(21). https://link.springer.com/article/10.1007/s11023-024-09680-2
+
+National Privacy Commission. (2012). Implementing rules and regulations of the Data
+
+Privacy
+
+Act.
+
+https://privacy.gov.ph/implementing-rules-regulations-data-privacy-act-2012/
+
+NIST.
+
+(2023).
+
+AI
+
+risk
+
+management
+
+https://www.nist.gov/itl/ai-risk-management-framework
+
+framework.
+
+ONET
+
+Resource
+
+Center.
+
+(n.d.).
+
+https://www.onetcenter.org/content.html
+
+ONET
+
+content
+
+model.
+
+16
+
+OECD. (2021). Promoting diverse career pathways for researchers. https://www.oecd.org/en/publications/promoting-diverse-career-pathways-for-doctoral-an d-postdoctoral-researchers_dc21227a-en.html
+
+Pantoja, M., & De Castro, C. (2021). Recruitment and promotion in Sorsogon provincial government. Universal Journal of Interdisciplinary Research and Technology, 4(7). https://uijrt.com/articles/v4/i7/UIJRTV4I70015.pdf
+
+Putra, B. A. (2024). Governing AI in Southeast Asia: ASEAN's way forward. Frontiers in Artificial Intelligence, 7. https://doi.org/10.3389/frai.2024.1411838
+
+Raghavan, M., Barocas, S., Kleinberg, J., & Levy, K. (2020). Mitigating bias in
+
+algorithmic hiring: Evaluating claims and practices. Proceedings of the 2020 Conference
+
+on
+
+Fairness,
+
+Accountability,
+
+and
+
+Transparency.
+
+https://creatingfutureus.org/wp-content/uploads/2021/10/RaghavanEtAl-2020-Mitigating
+
+BiasHiring.pdf
+
+Society for Human Resource Management. (2022). HR tools and samples. https://www.shrm.org/topics-tools/tools
+
+Tan, J.-E. (2023). Governance of artificial intelligence in Southeast Asia. EngageMedia Report. https://engagemedia.org/wp-content/uploads/2023/06/Engage_Report-Governance-of-Art ificial-Intelligence-AI-in-Southeast-Asia_06062023.pdf
+
+Times Higher Education. (2023). International talent and hiring report. https://www.timeshighereducation.com/sites/default/files/the_international_talent_report_ -_2023.pdf
+
+U.S. Equal Employment Opportunity Commission. (2022). The Americans with Disabilities Act and the use of software, algorithms, and artificial intelligence to assess job applicants and employees. https://www.ada.gov/assets/pdfs/ai-guidance.pdf
+
+World Bank. (2021). GovTech maturity index: The state of public sector digital transformation. https://documents.worldbank.org/en/publication/documents-reports/documentdetail/2986 61631773566870
+
+Xu, W., & Gao, Z. (2024). An intelligent sociotechnical systems (iSTS) framework: Enabling a hierarchical human-centered AI (hHCAI) approach. arXiv. https://doi.org/10.48550/arXiv.2401.03223
+
+17
+
+

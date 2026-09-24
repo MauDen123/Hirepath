@@ -1,8 +1,16 @@
 import { prisma } from '@/lib/prisma';
+import { isPrismaAvailable } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+
+export const runtime = 'nodejs';
 
 export async function GET() {
   try {
+    // Only run migration in Node.js runtime where Prisma is available
+    if (!isPrismaAvailable) {
+      return NextResponse.json({ message: 'Skipping migration in Edge Runtime' });
+    }
+
     // Check if table exists by attempting to select 1 from it limit 1
     try {
       await prisma.session.findFirst({ take: 1 });
