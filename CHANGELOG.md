@@ -1,89 +1,56 @@
-# Changelog - Latest Update
+# Changelog
 
-## Summary
-This update adds comprehensive code review capabilities, security auditing tools, and React/Next.js performance optimization guidelines to the codebase.
+All notable changes to this project will be documented in this file.
 
-## New Features Added
+## [Unreleased]
 
-### 1. Code Reviewer Agent (.claude/agents/code-reviewer.md)
-- Comprehensive code review agent for TypeScript, JavaScript, Python, Swift, Kotlin, Go
-- Focus areas: code quality, security vulnerabilities, best practices
-- Includes automated pre-checks for dependency CVEs and hardcoded secrets
-- Provides structured review checklist covering security, error handling, tests, dependencies, performance
-- Language-specific checks for TypeScript, Python, Rust, Go, SQL
-- Constructive feedback principles and integration guidelines with other agents
+### Added
+- Comprehensive document processing infrastructure with OCR capabilities
+- Tesseract.js integration for image OCR processing (JPG, JPEG, PNG, BMP, TIFF)
+- PDF.js + canvas integration for PDF OCR processing (page-by-page with scaling for accuracy)
+- Structured data extraction for PDS (Personal Data Sheet) forms:
+  - Name extraction (full name, first/middle/last name)
+  - Date of birth, place of birth, sex, civil status
+  - Height, weight, address, contact information
+  - Education, civil service eligibility
+- Structured data extraction for WES (Work Experience Sheet) forms:
+  - Employer name, position title, inclusive dates
+  - Salary grade, monthly salary, appointment status
+  - Government service information
+- Confidence scoring system combining OCR quality and extraction accuracy
+- Automatic handling of multi-page PDF documents
+- Graceful fallback for unsupported file types (DOC, DOCX, etc.)
 
-### 2. Security Auditor Agent (.claude/agents/security-auditor.md)
-- Systematic security audit agent for vulnerability analysis and compliance assessment
-- Covers compliance frameworks: SOC 2, ISO 27001/27002, HIPAA, PCI DSS, GDPR, NIST, CIS
-- Vulnerability assessment: network scanning, application testing, configuration review, patch management
-- Access control, data security, infrastructure, and application security audits
-- Incident response and risk assessment capabilities
-- Detailed audit methodology and reporting formats
+### Changed
+- Updated document processing API to return structured data with confidence scores
+- Enhanced document upload route to utilize new processing capabilities
+- Updated HR review page to display parsing confidence scores for documents
+- Improved TypeScript definitions and error handling throughout
+- Updated dependencies to resolve ESLint conflicts (eslint@^9)
 
-### 3. Code Reviewer Skill (.claude/skills/code-reviewer/)
-Complete toolkit for code review with automated scripts:
-- **PR Analyzer**: Automated pull request analysis
-- **Code Quality Checker**: Deep analysis with performance metrics and recommendations
-- **Review Report Generator**: Advanced reporting capabilities
-- Reference documentation including:
-  - Code Review Checklist
-  - Coding Standards
-  - Common Antipatterns
-  - Tech stack covering multiple languages and frameworks
-  - Development workflow and best practices
+### Fixed
+- ESLint Dependency Conflict: eslint-config-next@16.3.4 requires eslint@>=9.0.0
+- Test Mock Issues: Added missing session object mocks in auth route tests
+- JSX Syntax Error: Corrected fields=[...] to fields={ [...] in ScoreForm.tsx
+- Module Resolution Error: Fixed import path to ./actions.ts in CRRC evaluations
+- TypeScript Errors: Fixed Tesseract.js API usage and worker initialization
+- All 19 tests now pass consistently
 
-### 4. React Best Practices Skill (.claude/skills/react-best-practices/)
-Comprehensive React and Next.js performance optimization guide with 40+ rules:
+### Files Modified
+- `src/lib/documentProcessing.ts` - New file with complete OCR and extraction implementation
+- `src/app/api/documents/route.ts` - Enhanced to use document processing and store results
+- `src/app/hr/review/[id]/page.tsx` - Updated to display parsing confidence scores
+- `src/app/crrc-evaluations/ScoreForm.tsx` - Fixed JSX syntax error
+- `src/app/api/auth/login/__tests__/route.test.ts` - Fixed test mocks
+- `src/app/api/auth/register/__tests__/route.test.ts` - Fixed test expectations
+- `src/app/api/applications.route.test.ts` - Fixed import paths
+- `tsconfig.json` - Updated TypeScript configuration
+- `package.json` & `package-lock.json` - Updated dependencies
+- `CHANGELOG.md` - Added this changelog entry
 
-#### Critical Impact Rules:
-- **Eliminating Waterfalls**: Defer await, dependency-based parallelization, Promise.all(), strategic Suspense
-- **Bundle Size Optimization**: Avoid barrel imports, conditional module loading, defer third-party libraries, dynamic imports, preload based on user intent
-
-#### High Impact Rules:
-- **Server-Side Performance**: Cross-request LRU caching, minimize serialization at RSC boundaries, parallel data fetching, React.cache() deduplication
-- **Client-Side Data Fetching**: Deduplicate global event listeners, use SWR for automatic deduplication
-
-#### Medium Impact Rules:
-- **Re-render Optimization**: Defer state reads, extract to memoized components, narrow effect dependencies, subscribe to derived state, lazy state initialization, transitions for non-urgent updates
-- **Rendering Performance**: Animate SVG wrapper, CSS content-visibility, hoist static JSX, optimize SVG precision, prevent hydration mismatch, Activity component for show/hide, explicit conditional rendering
-
-#### Low-Medium Impact Rules:
-- **JavaScript Performance**: Batch DOM CSS changes, build index maps, cache property access, cache function calls, cache storage API calls, combine array iterations, early length checks, early returns, hoist RegExp, use loop for min/max, use Set/Map for O(1) lookups, use toSorted() for immutability
-
-#### Low Impact Rules:
-- **Advanced Patterns**: Store event handlers in refs, useLatest for stable callback refs
-
-Each rule includes:
-- Incorrect/correct code comparisons
-- Specific impact metrics
-- When to apply the optimization
-- Real-world examples
-- References to documentation and resources
-
-## Files Modified/Added
-- Added `.claude/agents/code-reviewer.md` (175 lines)
-- Added `.claude/agents/security-auditor.md` (286 lines)
-- Added `.claude/skills/code-reviewer/` directory with:
-  - SKILL.md (209 lines)
-  - References: code_review_checklist.md, coding_standards.md, common_antipatterns.md (each ~103 lines)
-  - Scripts: pr_analyzer.py, code_quality_checker.py, review_report_generator.py (each ~114 lines)
-- Added `.claude/skills/react-best-practices/` directory with:
-  - SKILL.md (209 lines)
-  - References: react-performance-guidelines.md (1865 lines), rules directory with 38+ individual rule files
-  - Additional reference files and download script
-
-## Technical Details
-- All new agents and skills follow the established project structure
-- Python scripts include proper shebangs, argument parsing, and error handling
-- Markdown files provide comprehensive documentation with code examples
-- React best practices guide is based on Vercel Engineering guidelines (version 0.1.0, January 2026)
-
-## Impact
-This update significantly enhances the development toolkit available in the codebase by providing:
-1. Automated code review capabilities for multiple languages
-2. Security auditing tools for compliance and vulnerability assessment
-3. Performance optimization guidelines specifically for React/Next.js applications
-4. Structured processes for maintaining code quality and security standards
-
-The additions follow the project's existing patterns and integrate seamlessly with the current Claude Code setup.
+## [Previous Version] - (Before Phase 1 Enhancements)
+- Initial application structure with basic authentication and routing
+- Document upload functionality without OCR or structured data extraction
+- Basic CRRC evaluation system
+- Applicant and HR interfaces
+- Vacancy management system
