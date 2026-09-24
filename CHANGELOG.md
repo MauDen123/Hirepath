@@ -39,7 +39,7 @@ All notable changes to this project will be documented in this file.
 ### Files Modified
 - `src/lib/documentProcessing.ts` - New file with complete OCR and extraction implementation
 - `src/app/api/documents/route.ts` - Enhanced to use document processing and store results
-- `src/app/hr/review/[id]/page.tsx` - Updated to display parsing confidence scores
+- `src/app/hr/review/[id]/page.tsx` - Updated to display parsing confidence scores for documents
 - `src/app/crrc-evaluations/ScoreForm.tsx` - Fixed JSX syntax error
 - `src/app/api/auth/login/__tests__/route.test.ts` - Fixed test mocks
 - `src/app/api/auth/register/__tests__/route.test.ts` - Fixed test expectations
