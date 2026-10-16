@@ -27,7 +27,17 @@ export default async function ApplicantApplicationsPage() {
   // Get applications for the logged-in applicant
   const applications = await prisma.application.findMany({
     where: { applicantId: applicant.id },
-    include: { vacancy: true },
+    include: {
+      vacancy: true,
+      documents: {
+        select: {
+          type: true,
+          uploadedAt: true,
+          verificationStatus: true,
+        },
+        orderBy: { uploadedAt: 'desc' },
+      },
+    },
     orderBy: { submittedAt: 'desc' },
   });
 
@@ -101,7 +111,7 @@ export default async function ApplicantApplicationsPage() {
                   React.createElement('th', null, 'Vacancy'),
                   React.createElement('th', null, 'Submitted'),
                   React.createElement('th', null, 'Status'),
-                  React.createElement('th', null, 'QS Match'),
+                  React.createElement('th', null, 'Documents'),
                   React.createElement('th', null, 'Actions')
                 )
               ),
@@ -109,6 +119,7 @@ export default async function ApplicantApplicationsPage() {
                 'tbody',
                 null,
                 applications.map((app: any) => {
+                  const docs = app.documents || [];
                   return React.createElement(
                     'tr',
                     { key: app.id },
@@ -121,24 +132,58 @@ export default async function ApplicantApplicationsPage() {
                     React.createElement(
                       'td',
                       null,
+                      // Status badge
                       React.createElement(
                         'span',
-                        {
-                          className: `badge ${app.status === 'qualified' ? 'approved' : app.status === 'deficient' ? 'flagged' : 'pending'}`,
-                        },
-                        app.status
+                        { className: `badge ${app.status.toLowerCase()}` },
+                        app.status.replace(/_/g, ' ').toUpperCase()
                       )
                     ),
                     React.createElement(
                       'td',
                       null,
-                      app.qsMatchScore !== null ? `${app.qsMatchScore}%` : 'N/A'
+                      docs.length > 0
+                        ? React.createElement(
+                            'div',
+                            { className: 'doc-list' },
+                            docs.map((doc: any) =>
+                              React.createElement(
+                                'div',
+                                { key: doc.id, className: 'doc-item' },
+                                React.createElement(
+                                  'span',
+                                  { className: 'doc-type' },
+                                  doc.type.replace(/_/g, ' ').toUpperCase()
+                                ),
+                                React.createElement(
+                                  'span',
+                                  {
+                                    className: `doc-status ${doc.verificationStatus}`,
+                                  },
+                                  doc.verificationStatus
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                    doc.verificationStatus.slice(1)
+                                ),
+                                React.createElement(
+                                  'span',
+                                  { className: 'doc-date' },
+                                  new Date(doc.uploadedAt).toLocaleDateString()
+                                )
+                              )
+                            )
+                          )
+                        : React.createElement(
+                            'p',
+                            { className: 'muted' },
+                            'No documents uploaded'
+                          )
                     ),
                     React.createElement(
                       'td',
                       null,
                       React.createElement(
-                        Link,
+                        'Link',
                         {
                           href: `/applicant/applications/${app.id}`,
                           className: 'btn btn-ghost btn-sm',

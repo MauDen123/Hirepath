@@ -25,9 +25,26 @@ export default function ApplicantDocumentsPage() {
   const [documents, setDocuments] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
-  const [sort, setSort] = React.useState<string>(searchParams.get('sort') || 'date_desc');
+  const [sort, setSort] = React.useState<string>(
+    searchParams.get('sort') || 'date_desc'
+  );
   const [deleteLoading, setDeleteLoading] = React.useState<boolean>(false);
   const [deleteError, setDeleteError] = React.useState<string | null>(null);
+
+  // Helper function to map document verification status to appropriate badge and text for applicant views
+  const getDocumentBadgeAndText = (
+    status: string
+  ): { className: string; text: string } => {
+    switch (status) {
+      case 'verified':
+        return { className: 'badge approved', text: 'Verified' };
+      case 'flagged':
+        return { className: 'badge pending', text: 'Pending Review' };
+      case 'pending':
+      default:
+        return { className: 'badge pending', text: 'Pending' };
+    }
+  };
   const [deleteSuccess, setDeleteSuccess] = React.useState<boolean>(false);
 
   // Fetch applicant, applications, and documents when sort changes or on mount
@@ -91,7 +108,7 @@ export default function ApplicantDocumentsPage() {
       }
 
       // Successfully removed, update state directly
-      setDocuments(prev => prev.filter(doc => doc.id !== docId));
+      setDocuments((prev) => prev.filter((doc) => doc.id !== docId));
       setDeleteSuccess(true);
     } catch (err: any) {
       setDeleteError(err.message || 'Failed to delete document');
@@ -118,11 +135,7 @@ export default function ApplicantDocumentsPage() {
           title: 'My Documents',
           subtitle: 'Manage your uploaded documents',
         }),
-        React.createElement(
-          'p',
-          { className: 'muted' },
-          'Loading...'
-        )
+        React.createElement('p', { className: 'muted' }, 'Loading...')
       )
     );
   }
@@ -148,16 +161,26 @@ export default function ApplicantDocumentsPage() {
         title: 'My Documents',
         subtitle: 'Manage your uploaded documents',
       }),
-      deleteError && React.createElement(
-        'div',
-        { className: 'mb-4 p-3 bg-red-50 rounded border border-red-200' },
-        React.createElement('p', { className: 'text-sm text-red-700' }, deleteError)
-      ),
-      deleteSuccess && React.createElement(
-        'div',
-        { className: 'mb-4 p-3 bg-green-50 rounded border border-green-200' },
-        React.createElement('p', { className: 'text-sm text-green-700' }, 'Document deleted successfully!')
-      ),
+      deleteError &&
+        React.createElement(
+          'div',
+          { className: 'mb-4 p-3 bg-red-50 rounded border border-red-200' },
+          React.createElement(
+            'p',
+            { className: 'text-sm text-red-700' },
+            deleteError
+          )
+        ),
+      deleteSuccess &&
+        React.createElement(
+          'div',
+          { className: 'mb-4 p-3 bg-green-50 rounded border border-green-200' },
+          React.createElement(
+            'p',
+            { className: 'text-sm text-green-700' },
+            'Document deleted successfully!'
+          )
+        ),
       React.createElement(
         'div',
         { className: 'mb-4' },
@@ -171,7 +194,7 @@ export default function ApplicantDocumentsPage() {
           {
             value: sort,
             onChange: (e) => handleSortChange(e.target.value),
-            className: 'select w-sm'
+            className: 'select w-sm',
           },
           React.createElement(
             'option',
@@ -183,16 +206,8 @@ export default function ApplicantDocumentsPage() {
             { value: 'date_asc' },
             'Date (oldest first)'
           ),
-          React.createElement(
-            'option',
-            { value: 'type_asc' },
-            'Type (A-Z)'
-          ),
-          React.createElement(
-            'option',
-            { value: 'type_desc' },
-            'Type (Z-A)'
-          )
+          React.createElement('option', { value: 'type_asc' }, 'Type (A-Z)'),
+          React.createElement('option', { value: 'type_desc' }, 'Type (Z-A)')
         )
       )
     ),
@@ -207,7 +222,10 @@ export default function ApplicantDocumentsPage() {
       React.createElement(
         'div',
         { className: 'card-body' },
-        React.createElement(ApplicantDocumentsUploadForm, { applications, userId: applicant.id })
+        React.createElement(ApplicantDocumentsUploadForm, {
+          applications,
+          userId: applicant.id,
+        })
       )
     ),
     React.createElement(
@@ -221,100 +239,102 @@ export default function ApplicantDocumentsPage() {
       React.createElement(
         'div',
         { className: 'card-body' },
-        documents.length === 0 ? (
-          React.createElement(
-            'p',
-            { className: 'muted' },
-            'You have not uploaded any documents yet.'
-          )
-        ) : (
-          React.createElement(
-            'table',
-            { className: 'w-full' },
-            React.createElement(
-              'thead',
-              null,
+        documents.length === 0
+          ? React.createElement(
+              'p',
+              { className: 'muted' },
+              'You have not uploaded any documents yet.'
+            )
+          : React.createElement(
+              'table',
+              { className: 'w-full' },
               React.createElement(
-                'tr',
+                'thead',
                 null,
                 React.createElement(
-                  'th',
-                  { className: 'text-left' },
-                  'Document Type'
-                ),
-                React.createElement(
-                  'th',
-                  { className: 'text-left' },
-                  'Uploaded'
-                ),
-                React.createElement(
-                  'th',
-                  { className: 'text-left' },
-                  'Status'
-                ),
-                React.createElement(
-                  'th',
-                  { className: 'text-left' },
-                  'Actions'
-                )
-              )
-            ),
-            React.createElement(
-              'tbody',
-              null,
-              documents.map((doc) => (
-                React.createElement(
                   'tr',
-                  { key: doc.id },
+                  null,
                   React.createElement(
-                    'td',
-                    null,
-                    doc.type
+                    'th',
+                    { className: 'text-left' },
+                    'Document Type'
                   ),
                   React.createElement(
-                    'td',
-                    null,
-                    new Date(doc.uploadedAt).toLocaleDateString()
+                    'th',
+                    { className: 'text-left' },
+                    'Uploaded'
                   ),
                   React.createElement(
-                    'td',
-                    null,
-                    React.createElement(
-                      'span',
-                      {
-                        className: `badge ${doc.verificationStatus === 'verified' ? 'approved' : doc.verificationStatus === 'flagged' ? 'flagged' : 'pending'}`,
-                      }
-                    ),
-                    doc.verificationStatus
+                    'th',
+                    { className: 'text-left' },
+                    'Status'
                   ),
                   React.createElement(
-                    'td',
-                    null,
+                    'th',
+                    { className: 'text-left' },
+                    'Actions'
+                  )
+                )
+              ),
+              React.createElement(
+                'tbody',
+                null,
+                documents.map((doc) =>
+                  React.createElement(
+                    'tr',
+                    { key: doc.id },
+                    React.createElement('td', null, doc.type),
                     React.createElement(
-                      Link,
-                      { href: `/applicant/documents/${doc.id}`, className: 'btn btn-ghost btn-sm' },
-                      'View'
+                      'td',
+                      null,
+                      new Date(doc.uploadedAt).toLocaleDateString()
                     ),
                     React.createElement(
-                      Link,
-                      { href: `/applicant/documents/${doc.id}/edit`, className: 'btn btn-outline btn-sm' },
-                      'Edit'
+                      'td',
+                      null,
+                      React.createElement(
+                        'span',
+                        {
+                          className: getDocumentBadgeAndText(
+                            doc.verificationStatus
+                          ).className,
+                        },
+                        getDocumentBadgeAndText(doc.verificationStatus).text
+                      )
                     ),
                     React.createElement(
-                      'button',
-                      {
-                        onClick: () => deleteDocument(doc.id),
-                        disabled: deleteLoading,
-                        className: `btn btn-outline btn-sm ${deleteLoading ? 'opacity-50' : ''}`
-                      },
-                      deleteLoading ? 'Deleting...' : 'Delete'
+                      'td',
+                      null,
+                      React.createElement(
+                        Link,
+                        {
+                          href: `/applicant/documents/${doc.id}`,
+                          className: 'btn btn-ghost btn-sm',
+                        },
+                        'View'
+                      ),
+                      React.createElement(
+                        Link,
+                        {
+                          href: `/applicant/documents/${doc.id}/edit`,
+                          className: 'btn btn-outline btn-sm',
+                        },
+                        'Edit'
+                      ),
+                      React.createElement(
+                        'button',
+                        {
+                          onClick: () => deleteDocument(doc.id),
+                          disabled: deleteLoading,
+                          className: `btn btn-outline btn-sm ${deleteLoading ? 'opacity-50' : ''}`,
+                        },
+                        deleteLoading ? 'Deleting...' : 'Delete'
+                      )
                     )
                   )
                 )
-              ))
+              )
             )
-          )
-        )
       )
     )
   );

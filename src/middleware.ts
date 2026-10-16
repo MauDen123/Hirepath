@@ -37,7 +37,9 @@ export async function middleware(request: NextRequest) {
 
     // Validate session using our session helper (works in both runtimes)
     const sessionData = await session.validate(sessionToken);
-    console.log(`[middleware] Session data: ${sessionData ? JSON.stringify(sessionData) : 'null'}`);
+    console.log(
+      `[middleware] Session data: ${sessionData ? JSON.stringify(sessionData) : 'null'}`
+    );
 
     // If session not found or expired, redirect to login
     if (!sessionData) {
@@ -73,7 +75,9 @@ export async function middleware(request: NextRequest) {
         // Redirect to home or show 403; for simplicity redirect to login
         const url = request.nextUrl.clone();
         url.pathname = '/';
-        console.log(`[middleware] Role ${role} not allowed for ${matchedPrefix}, redirecting to /`);
+        console.log(
+          `[middleware] Role ${role} not allowed for ${matchedPrefix}, redirecting to /`
+        );
         return NextResponse.redirect(url);
       }
     }
@@ -87,12 +91,21 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * Match all request paths starting with:
+     * - hr
+     * - career-path
+     * - vacancies
+     * - crrc-evaluations
+     * - reports
+     * - admin
+     * - applicant
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ]
+    '/hr',
+    '/career-path',
+    '/vacancies',
+    '/crrc-evaluations',
+    '/reports',
+    '/admin',
+    '/applicant',
+  ],
 };

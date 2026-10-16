@@ -5,6 +5,7 @@ import TopLine from '@/components/TopLine';
 import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/lib/auth';
 import { notFound } from 'next/navigation';
+import { QualificationFlag } from '@/lib/qualification-flags';
 
 const navItems: NavItem[] = [
   { index: '01', label: 'Applicants', href: '/hr' },
@@ -29,6 +30,7 @@ const statusMeta: Record<string, { label: string; badge: string }> = {
   not_selected: { label: 'Not selected', badge: 'flagged' },
 };
 
+
 // Function to get initials from name (same as in HR page)
 function initialsFrom(name: string) {
   const parts = name.trim().split(/\s+/);
@@ -37,33 +39,43 @@ function initialsFrom(name: string) {
   return (first + last).toUpperCase();
 }
 
-// Function to get badge class based on status (same as in vacancy detail page)
-function getBadgeClass(status: string): string {
-  switch (status) {
-    case 'draft':
+// Function to get badge class based on qualification flag
+function getQualificationFlagBadgeClass(flag: QualificationFlag | undefined): string {
+  if (!flag) return 'badge-neutral';
+  switch (flag) {
+    case 'pending':
       return 'badge-neutral';
-    case 'pending_hr_review':
-      return 'badge-pending';
-    case 'returned':
-      return 'badge-flagged';
-    case 'awaiting_vpaa_endorsement':
-      return 'badge-pending';
-    case 'awaiting_president_approval':
-      return 'badge-pending';
-    case 'awaiting_board_confirmation':
-      return 'badge-pending';
-    case 'published':
+    case 'green':
       return 'badge-approved';
-    case 'closed':
+    case 'yellow':
+      return 'badge-pending';
+    case 'red':
       return 'badge-flagged';
     default:
       return 'badge-neutral';
   }
 }
 
+// Function to get label based on qualification flag
+function getQualificationFlagLabel(flag: QualificationFlag | undefined): string {
+  if (!flag) return 'Unknown';
+  switch (flag) {
+    case 'pending':
+      return 'Pending';
+    case 'green':
+      return 'Green Flag';
+    case 'yellow':
+      return 'Yellow Flag';
+    case 'red':
+      return 'Red Flag';
+    default:
+      return 'Unknown';
+  }
+}
+
 // Action to update application status
 export const updateApplicationStatus = async (formData: FormData) => {
-  "use server";
+  'use server';
 
   try {
     const user = await getCurrentUser();
@@ -78,7 +90,7 @@ export const updateApplicationStatus = async (formData: FormData) => {
 
     const applicationId = formData.get('applicationId') as string;
     const newStatus = formData.get('status') as string;
-    const notes = formData.get('notes') as string || null;
+    const notes = (formData.get('notes') as string) || null;
 
     if (!applicationId) {
       throw new Error('Application ID is required');
@@ -86,21 +98,50 @@ export const updateApplicationStatus = async (formData: FormData) => {
     if (!newStatus) {
       throw new Error('Status is required');
     }
+    const allowedStatuses = ["submitted", "under_review", "deficient", "qualified", "psc_screened", "shortlisted", "psb_evaluated", "crrc_scheduled", "crrc_evaluated", "appointed", "not_selected"];
+    if (!allowedStatuses.includes(newStatus)) {
+      throw new Error("Invalid status");
+    }
 
-    // Update the application
+    // Get the current application to retrieve the previous status for audit logging
+    const currentApplication = await prisma.application.findUnique({
+      where: { id: applicationId },
+      select: {
+        status: true,
+        qualificationFlag: true,
+        qualificationDetails: true,
+      },
+    });
+
+    if (!currentApplication) {
+      throw new Error('Application not found');
+    }
+
     const application = await prisma.application.update({
       where: { id: applicationId },
       data: {
         status: newStatus,
-        // We could add notes to a separate field if needed in the future
-        // For now, we're just updating the status
+        notes: notes,
       },
     });
 
-    // In a real implementation, we might want to:
-    // 1. Create an audit log entry
-    // 2. Send a notification email to the applicant
-    // 3. Trigger any workflows based on the status change
+    // Update audit log if status changed and flag is not GREEN
+    if (currentApplication.qualificationFlag !== QualificationFlag.green) {
+      await prisma.auditLog.create({
+        data: {
+          applicationId: application.id,
+          action: 'STATUS_CHANGE',
+          details: JSON.stringify({
+            previousStatus: currentApplication.status, // Correctly using the status before update
+            newStatus: newStatus,
+            qualificationFlag: currentApplication.qualificationFlag,
+            qualificationDetails: currentApplication.qualificationDetails,
+            changedAt: new Date().toISOString(),
+            changedBy: user.id
+          })
+        }
+      })
+    }
 
     return { success: true };
   } catch (error) {
@@ -127,12 +168,28 @@ export default async function HrReviewPage({
     getCurrentUser(),
     prisma.application.findUnique({
       where: { id },
-      include: {
+      select: {
+        id: true,
+        status: true,
+        qsMatchScore: true,
+        crrcScore: true,
+        qualificationFlag: true,
+        qualificationDetails: true,
+        submittedAt: true,
         applicant: { select: { id: true, name: true, email: true } },
         vacancy: { select: { id: true, positionTitle: true, status: true } },
-        documents: true,
+        documents: {
+          select: {
+            id: true,
+            type: true,
+            fileUrl: true,
+            uploadedAt: true,
+            verificationStatus: true,
+            parsingConfidence: true,
+          },
+        },
       },
-    })
+    }),
   ]);
 
   // Handle authentication and authorization
@@ -150,22 +207,21 @@ export default async function HrReviewPage({
   }
 
   // Pre-compute values for better React performance
-  const vacancyPositionTitle = application.vacancy?.positionTitle || 'Unknown Position';
+  const vacancyPositionTitle =
+    application.vacancy?.positionTitle || 'Unknown Position';
   const applicantName = application.applicant.name;
   const applicantEmail = application.applicant.email;
-  const submittedAtFormatted = new Date(application.submittedAt).toLocaleDateString();
-  const qsMatchScoreFormatted = application.qsMatchScore !== null ? `${application.qsMatchScore}%` : 'N/A';
-  const crrcScoreFormatted = application.crrcScore !== null ? `${application.crrcScore}` : 'N/A';
+  const submittedAtFormatted = new Date(
+    application.submittedAt
+  ).toLocaleDateString();
+  const qsMatchScoreFormatted =
+    application.qsMatchScore !== null ? `${application.qsMatchScore}%` : 'N/A';
+  const crrcScoreFormatted =
+    application.crrcScore !== null ? `${application.crrcScore}` : 'N/A';
 
-  // Compute badge class for application status
-  let applicationStatusBadgeClass = 'badge-neutral';
-  if (application.status === 'qualified') {
-    applicationStatusBadgeClass = 'badge-approved';
-  } else if (application.status === 'deficient') {
-    applicationStatusBadgeClass = 'badge-flagged';
-  } else {
-    applicationStatusBadgeClass = 'badge-pending';
-  }
+  // Use helper functions for qualification flag
+  const qualificationFlagBadgeClass = getQualificationFlagBadgeClass(application.qualificationFlag);
+  const qualificationFlagLabel = getQualificationFlagLabel(application.qualificationFlag);
 
   return (
     <div className="app-shell">
@@ -192,7 +248,9 @@ export default async function HrReviewPage({
               <p>
                 <strong>Applicant: </strong>
                 <span className="flex items-center space-x-2">
-                  <span className="avatar-dot">{initialsFrom(applicantName)}</span>
+                  <span className="avatar-dot">
+                    {initialsFrom(applicantName)}
+                  </span>
                   <span className="cell-primary">{applicantName}</span>
                 </span>
               </p>
@@ -209,19 +267,172 @@ export default async function HrReviewPage({
                 {submittedAtFormatted}
               </p>
               <p>
-                <strong>Status: </strong>
-                <span className={applicationStatusBadgeClass}>
-                  {application.status}
+                <strong>Qualification Flag: </strong>
+                <span className={qualificationFlagBadgeClass}>
+                  {qualificationFlagLabel}
                 </span>
-              </p>
-              <p>
-                <strong>QS Match: </strong>
-                {qsMatchScoreFormatted}
               </p>
               <p>
                 <strong>CRRC Score: </strong>
                 {crrcScoreFormatted}
               </p>
+
+              {/* Qualification Details */}
+              {application.qualificationDetails && (
+                <>
+                  <p className="font-medium mb-2">Qualification Breakdown:</p>
+                  <div className="space-y-2">
+                    <div className="border rounded-lg p-3">
+                      <div className="flex justify-between">
+                        <span className="font-medium">Education</span>
+                        <span
+                          className={getQualificationFlagBadgeClass(application.qualificationDetails.dimensions.education.flag)}
+                        >
+                          {getQualificationFlagLabel(
+                            application.qualificationDetails.dimensions
+                              .education.flag
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Required:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.education
+                            .required
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Found:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.education
+                            .found
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        <strong>Reason:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.education
+                            .reason
+                        }
+                      </p>
+                    </div>
+
+                    <div className="border rounded-lg p-3">
+                      <div className="flex justify-between">
+                        <span className="font-medium">Experience</span>
+                        <span
+                          className={getQualificationFlagBadgeClass(application.qualificationDetails.dimensions.experience.flag)}
+                        >
+                          {getQualificationFlagLabel(
+                            application.qualificationDetails.dimensions
+                              .experience.flag
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Required:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.experience
+                            .required
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Found:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.experience
+                            .found
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        <strong>Reason:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.experience
+                            .reason
+                        }
+                      </p>
+                    </div>
+
+                    <div className="border rounded-lg p-3">
+                      <div className="flex justify-between">
+                        <span className="font-medium">Training</span>
+                        <span
+                          className={getQualificationFlagBadgeClass(application.qualificationDetails.dimensions.training.flag)}
+                        >
+                          {getQualificationFlagLabel(
+                            application.qualificationDetails.dimensions.training
+                              .flag
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Required:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.training
+                            .required
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Found:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.training
+                            .found
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        <strong>Reason:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions.training
+                            .reason
+                        }
+                      </p>
+                    </div>
+
+                    <div className="border rounded-lg p-3">
+                      <div className="flex justify-between">
+                        <span className="font-medium">Eligibility</span>
+                        <span
+                          className={getQualificationFlagBadgeClass(application.qualificationDetails.dimensions.eligibility.flag)}
+                        >
+                          {getQualificationFlagLabel(
+                            application.qualificationDetails.dimensions
+                              .eligibility.flag
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Required:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions
+                            .eligibility.required
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500 mb-1">
+                        <strong>Found:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions
+                            .eligibility.found
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        <strong>Reason:</strong>{' '}
+                        {
+                          application.qualificationDetails.dimensions
+                            .eligibility.reason
+                        }
+                      </p>
+                    </div>
+                  </div>
+
+                  {application.qualificationDetails.suggestedAction && (
+                    <div className="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
+                      <p className="font-medium mb-1">Suggested Action:</p>
+                      <p className="text-sm">
+                        {application.qualificationDetails.suggestedAction}
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
             <div className="text-right">
               <div className="seal" style={{ width: 60, height: 60 }} />
@@ -236,12 +447,16 @@ export default async function HrReviewPage({
           </div>
           <div className="card-body">
             {application.documents.length === 0 ? (
-              <p className="muted">No documents uploaded for this application.</p>
+              <p className="muted">
+                No documents uploaded for this application.
+              )
             ) : (
               <div className="space-y-3">
                 {application.documents.map((doc) => {
                   // Pre-compute values for each document
-                  const uploadedAtFormatted = new Date(doc.uploadedAt).toLocaleDateString();
+                  const uploadedAtFormatted = new Date(
+                    doc.uploadedAt
+                  ).toLocaleDateString();
 
                   // Compute badge class for verification status
                   let verificationStatusBadgeClass = 'badge-neutral';
@@ -263,9 +478,9 @@ export default async function HrReviewPage({
                           </p>
                           {doc.parsingConfidence !== null && (
                             <p className="text-sm text-gray-500">
-                              Parsing Confidence: {(doc.parsingConfidence * 100).toFixed(0)}%
-                            </p>
-                          )}
+                              Parsing Confidence:{' '}
+                              {(doc.parsingConfidence * 100).toFixed(0)}%
+                            )}
                         </div>
                         <div className="text-right">
                           <span className={verificationStatusBadgeClass}>
@@ -280,7 +495,7 @@ export default async function HrReviewPage({
                           title={`Preview of ${doc.type}`}
                           className="w-full h-96 border rounded"
                           loading="lazy"
-                          sandbox="allow-same-origin allow-scripts"
+                          sandbox="allow-same-origin"
                         />
                       </div>
                     </div>
@@ -297,10 +512,20 @@ export default async function HrReviewPage({
             <h3>Update Application Status</h3>
           </div>
           <div className="card-body">
-            <form action={updateApplicationStatus} className="space-y-4" method="POST">
-              <input type="hidden" name="applicationId" value={application.id} />
+            <form
+              action={updateApplicationStatus}
+              className="space-y-4"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="applicationId"
+                value={application.id}
+              />
               <div>
-                <label className="block text-sm font-medium mb-1">New Status</label>
+                <label className="block text-sm font-medium mb-1">
+                  New Status
+                </label>
                 <select
                   name="status"
                   className="select select-bordered w-full"
@@ -322,7 +547,9 @@ export default async function HrReviewPage({
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Notes (Optional)</label>
+                <label className="block text-sm font-medium mb-1">
+                  Notes (Optional)
+                </label>
                 <textarea
                   name="notes"
                   className="textarea textarea-bordered w-full"
@@ -331,16 +558,10 @@ export default async function HrReviewPage({
                 />
               </div>
               <div className="flex justify-end space-x-3">
-                <button
-                  type="button"
-                  className="btn btn-outline"
-                >
+                <button type="button" className="btn btn-outline">
                   <Link href="/hr">Back to Applications</Link>
                 </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                >
+                <button type="submit" className="btn btn-primary">
                   Update Status
                 </button>
               </div>

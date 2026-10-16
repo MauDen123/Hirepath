@@ -24,11 +24,10 @@ export default async function ApplicantPage() {
   // Get applications for the logged-in applicant
   const applications = await prisma.application.findMany({
     where: { applicantId: applicant.id },
-    include: { vacancy: true },
+    include: { vacancy: true, qualificationDetails: true },
     orderBy: { submittedAt: 'desc' },
   });
 
-  
   return React.createElement(
     'div',
     { className: 'app-shell' },
@@ -42,18 +41,15 @@ export default async function ApplicantPage() {
     React.createElement(
       'main',
       { className: 'main' },
-      React.createElement(
-        TopLine,
-        {
-          title: 'My Dashboard',
-          subtitle: 'Your applications and profile information',
-          action: React.createElement(
-            Link,
-            { href: '/applicant/profile', className: 'btn btn-ghost btn-sm' },
-            'Edit Profile'
-          )
-        }
-      ),
+      React.createElement(TopLine, {
+        title: 'My Dashboard',
+        subtitle: 'Your applications and profile information',
+        action: React.createElement(
+          Link,
+          { href: '/applicant/profile', className: 'btn btn-ghost btn-sm' },
+          'Edit Profile'
+        ),
+      }),
       React.createElement(
         'div',
         { className: 'card' },
@@ -90,19 +86,25 @@ export default async function ApplicantPage() {
               'p',
               null,
               React.createElement('strong', null, 'Age: '),
-              applicant.age !== null && applicant.age !== undefined ? applicant.age : 'Not specified'
+              applicant.age !== null && applicant.age !== undefined
+                ? applicant.age
+                : 'Not specified'
             ),
             React.createElement(
               'p',
               null,
               React.createElement('strong', null, 'Gender: '),
-              applicant.gender !== null && applicant.gender !== undefined ? applicant.gender : 'Not specified'
+              applicant.gender !== null && applicant.gender !== undefined
+                ? applicant.gender
+                : 'Not specified'
             ),
             React.createElement(
               'p',
               null,
               React.createElement('strong', null, 'Address: '),
-              applicant.address !== null && applicant.address !== undefined ? applicant.address : 'Not specified'
+              applicant.address !== null && applicant.address !== undefined
+                ? applicant.address
+                : 'Not specified'
             )
           ),
           React.createElement(
@@ -141,7 +143,7 @@ export default async function ApplicantPage() {
                   React.createElement('th', null, 'Vacancy'),
                   React.createElement('th', null, 'Submitted'),
                   React.createElement('th', null, 'Status'),
-                  React.createElement('th', null, 'QS Match'),
+                  React.createElement('th', null, 'Qualification'),
                   React.createElement('th', null)
                 )
               ),
@@ -162,15 +164,48 @@ export default async function ApplicantPage() {
                       'td',
                       null,
                       React.createElement(
-                        'span',
-                        { className: 'badge pending' },
-                        app.status
+                        'div',
+                        { className: 'checklist' },
+                        React.createElement(
+                          'div',
+                          { className: 'checklist-item' },
+                          React.createElement('input', {
+                            type: 'checkbox',
+                            checked: true,
+                            disabled: true,
+                            readOnly: true,
+                          }),
+                          React.createElement(
+                            'span',
+                            null,
+                            'Documents Received'
+                          )
+                        ),
+                        React.createElement(
+                          'div',
+                          { className: 'checklist-item' },
+                          React.createElement('input', {
+                            type: 'checkbox',
+                            checked: true,
+                            disabled: true,
+                            readOnly: true,
+                          }),
+                          React.createElement(
+                            'span',
+                            null,
+                            'Application Complete'
+                          )
+                        )
                       )
                     ),
                     React.createElement(
                       'td',
                       null,
-                      app.qsMatchScore !== null ? `${app.qsMatchScore}%` : 'N/A'
+                      React.createElement(
+                        'span',
+                        { className: 'badge neutral' },
+                        'Checklist'
+                      )
                     ),
                     React.createElement(
                       'td',

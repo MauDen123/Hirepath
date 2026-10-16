@@ -16,10 +16,9 @@ const navItems: NavItem[] = [
   { index: '04', label: 'Career Path', href: '/career-path' },
 ];
 
-
 // Server action to delete document
 export const deleteDocument = async (formData: FormData) => {
-  "use server";
+  'use server';
   try {
     const id = formData.get('id') as string;
     if (!id) {
@@ -29,13 +28,19 @@ export const deleteDocument = async (formData: FormData) => {
     // Log the id for debugging (only visible in server logs)
     console.log(`Attempting to delete document with id: ${id}`);
     // Log the runtime to see if we are in Edge or Node.js
-    console.log(`Runtime in deleteDocument: ${typeof globalThis.EdgeRuntime !== 'undefined' ? 'Edge' : 'Node.js'}`);
+    console.log(
+      `Runtime in deleteDocument: ${typeof globalThis.EdgeRuntime !== 'undefined' ? 'Edge' : 'Node.js'}`
+    );
     // Log if Prisma client is available
-    console.log(`Prisma client in deleteDocument: ${prisma ? 'available' : 'null'}`);
+    console.log(
+      `Prisma client in deleteDocument: ${prisma ? 'available' : 'null'}`
+    );
 
     // If Prisma client is not available, throw an error
     if (!prisma) {
-      throw new Error('Prisma client is not available. Please check the runtime.');
+      throw new Error(
+        'Prisma client is not available. Please check the runtime.'
+      );
     }
 
     // Attempt to delete the document
@@ -94,19 +99,19 @@ export default async function ApplicantDocumentPage({
                   experience: true,
                   training: true,
                   eligibility: true,
-                }
+                },
               },
               college: {
                 select: {
                   id: true,
-                  name: true
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                  name: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
   if (!document) {
@@ -162,10 +167,8 @@ export default async function ApplicantDocumentPage({
               React.createElement('strong', null, 'Status: '),
               React.createElement(
                 'span',
-                {
-                  className: `badge ${document.verificationStatus === 'verified' ? 'approved' : document.verificationStatus === 'flagged' ? 'flagged' : 'pending'}`,
-                },
-                document.verificationStatus
+                { className: 'badge pending' },
+                'Document Received'
               )
             ),
             document.parsingConfidence !== null
@@ -226,14 +229,11 @@ export default async function ApplicantDocumentPage({
           'div',
           { className: 'card-body' },
           document.fileUrl && document.fileUrl.trim() !== ''
-            ? React.createElement(
-                'iframe',
-                {
-                  src: document.fileUrl,
-                  style: { width: '100%', height: '800px', border: 'none' },
-                  title: 'Document preview'
-                }
-              )
+            ? React.createElement('iframe', {
+                src: document.fileUrl,
+                style: { width: '100%', height: '800px', border: 'none' },
+                title: 'Document preview',
+              })
             : React.createElement(
                 'p',
                 { className: 'muted' },
@@ -255,14 +255,11 @@ export default async function ApplicantDocumentPage({
           React.createElement(
             'form',
             { action: deleteDocument },
-            React.createElement(
-              'input',
-              {
-                type: 'hidden',
-                name: 'id',
-                value: document.id,
-              }
-            ),
+            React.createElement('input', {
+              type: 'hidden',
+              name: 'id',
+              value: document.id,
+            }),
             React.createElement(
               'button',
               {

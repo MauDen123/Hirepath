@@ -72,18 +72,21 @@ export default async function ApplicantApplicationPage({
                 {new Date(application.submittedAt).toLocaleDateString()}
               </p>
               <p>
-                <strong>Status: </strong>
-                <span
-                  className={`
-                    badge ${application.status === 'qualified' ? 'approved' : application.status === 'deficient' ? 'flagged' : 'pending'}
-                  `}
-                >
-                  {application.status}
-                </span>
+                <strong>Qualification Checklist: </strong>
               </p>
+              <div className="checklist">
+                <div className="checklist-item">
+                  <input type="checkbox" checked:true disabled readOnly />
+                  <span>Documents Received</span>
+                </div>
+                <div className="checklist-item">
+                  <input type="checkbox" checked:true disabled readOnly />
+                  <span>Application Complete</span>
+                </div>
+              </div>
               <p>
                 <strong>QS Match: </strong>
-                {application.qsMatchScore !== null ? `${application.qsMatchScore}%` : 'N/A'}
+                <span className="badge neutral">Checklist</span>
               </p>
             </div>
             <div className="text-right">
@@ -114,13 +117,7 @@ export default async function ApplicantApplicationPage({
                     <td>{doc.type}</td>
                     <td>{new Date(doc.uploadedAt).toLocaleDateString()}</td>
                     <td>
-                      <span
-                        className={`
-                          badge ${doc.verificationStatus === 'verified' ? 'approved' : doc.verificationStatus === 'flagged' ? 'flagged' : 'pending'}
-                        `}
-                      >
-                        {doc.verificationStatus}
-                      </span>
+                      <span className="badge pending">Document Received</span>
                     </td>
                   </tr>
                 ))}
@@ -133,7 +130,11 @@ export default async function ApplicantApplicationPage({
             <h3>Actions</h3>
           </div>
           <div className="card-body">
-            <WithdrawButton applicationId={id} status={application.status} pscOutcome={application.pscOutcome} />
+            <WithdrawButton
+              applicationId={id}
+              status={application.status}
+              pscOutcome={application.pscOutcome}
+            />
           </div>
         </div>
       </main>

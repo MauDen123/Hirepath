@@ -143,20 +143,26 @@ export default function ApplicantVacanciesPage() {
         title: 'Available Vacancies',
         subtitle: 'Browse and apply for open positions',
       }),
-      applySuccess && (
+      applySuccess &&
         React.createElement(
           'div',
           { className: 'mt-4 p-3 bg-green-50 rounded border border-green-200' },
-          React.createElement('p', { className: 'text-sm text-green-700' }, applySuccess)
-        )
-      ),
-      applyError && (
+          React.createElement(
+            'p',
+            { className: 'text-sm text-green-700' },
+            applySuccess
+          )
+        ),
+      applyError &&
         React.createElement(
           'div',
           { className: 'mt-4 p-3 bg-red-50 rounded border border-red-200' },
-          React.createElement('p', { className: 'text-sm text-red-700' }, applyError)
-        )
-      ),
+          React.createElement(
+            'p',
+            { className: 'text-sm text-red-700' },
+            applyError
+          )
+        ),
       React.createElement(
         'div',
         { className: 'card' },
@@ -168,100 +174,104 @@ export default function ApplicantVacanciesPage() {
         React.createElement(
           'div',
           { className: 'card-body' },
-          vacancies.length === 0 ? (
-            React.createElement(
-              'p',
-              { className: 'muted' },
-              'No vacancies at the moment.'
-            )
-          ) : (
-            React.createElement(
-              'table',
-              { className: 'w-full' },
-              React.createElement(
-                'thead',
-                null,
-                React.createElement(
-                  'tr',
-                  null,
-                  React.createElement('th', null, 'Position'),
-                  React.createElement('th', null, 'College'),
-                  React.createElement('th', null, 'Track'),
-                  React.createElement('th', null, 'Salary Grade'),
-                  React.createElement('th', null, 'Status'),
-                  React.createElement('th', null, 'Actions')
-                )
-              ),
-              React.createElement(
-                'tbody',
-                null,
-                vacancies.map((vac: any) => {
-                  const isPublished = vac.status === 'published';
-                  // Get badge class based on status (same logic as HRMO page)
-                  let badgeClass = 'badge-neutral';
-                  switch (vac.status) {
-                    case 'draft':
-                      badgeClass = 'badge-neutral';
-                      break;
-                    case 'pending_hr_review':
-                      badgeClass = 'badge-pending';
-                      break;
-                    case 'returned':
-                      badgeClass = 'badge-flagged';
-                      break;
-                    case 'awaiting_vpaa_endorsement':
-                      badgeClass = 'badge-pending';
-                      break;
-                    case 'awaiting_president_approval':
-                      badgeClass = 'badge-pending';
-                      break;
-                    case 'awaiting_board_confirmation':
-                      badgeClass = 'badge-pending';
-                      break;
-                    case 'published':
-                      badgeClass = 'badge-approved';
-                      break;
-                    case 'closed':
-                      badgeClass = 'badge-flagged';
-                      break;
-                    default:
-                      badgeClass = 'badge-neutral';
-                  }
-                  return React.createElement(
-                    'tr',
-                    { key: vac.id },
-                    React.createElement('td', null, vac.positionTitle),
-                    React.createElement(
-                      'td',
-                      null,
-                      vac.college ? vac.college.name : 'N/A'
-                    ),
-                    React.createElement('td', null, vac.track),
-                    React.createElement('td', null, vac.salaryGrade ?? 'N/A'),
-                    React.createElement(
-                      'td',
-                      null,
-                      React.createElement('span', { className: badgeClass }, vac.status)
-                    ),
-                    React.createElement(
-                      'td',
-                      null,
-                      React.createElement(
-                        'button',
-                        {
-                          onClick: () => handleApply(vac.id),
-                          className: `btn btn-primary btn-sm ${!isPublished ? 'opacity-50' : ''}`,
-                          disabled: !isPublished,
-                          title: isPublished ? undefined : 'Can only apply to published vacancies'
-                        },
-                        'Apply'
-                      )
-                    )
-                  );
-                })
+          vacancies.length === 0
+            ? React.createElement(
+                'p',
+                { className: 'muted' },
+                'No vacancies at the moment.'
               )
-            )
-          )
+            : React.createElement(
+                'table',
+                { className: 'w-full' },
+                React.createElement(
+                  'thead',
+                  null,
+                  React.createElement(
+                    'tr',
+                    null,
+                    React.createElement('th', null, 'Position'),
+                    React.createElement('th', null, 'College'),
+                    React.createElement('th', null, 'Track'),
+                    React.createElement('th', null, 'Salary Grade'),
+                    React.createElement('th', null, 'Status'),
+                    React.createElement('th', null, 'Actions')
+                  )
+                ),
+                React.createElement(
+                  'tbody',
+                  null,
+                  vacancies.map((vac: any) => {
+                    const isPublished = vac.status === 'published';
+                    // Get badge class based on status (same logic as HRMO page)
+                    let badgeClass = 'badge-neutral';
+                    switch (vac.status) {
+                      case 'draft':
+                        badgeClass = 'badge-neutral';
+                        break;
+                      case 'pending_hr_review':
+                        badgeClass = 'badge-pending';
+                        break;
+                      case 'returned':
+                        badgeClass = 'badge-neutral';
+                        break;
+                      case 'awaiting_vpaa_endorsement':
+                        badgeClass = 'badge-pending';
+                        break;
+                      case 'awaiting_president_approval':
+                        badgeClass = 'badge-pending';
+                        break;
+                      case 'awaiting_board_confirmation':
+                        badgeClass = 'badge-pending';
+                        break;
+                      case 'published':
+                        badgeClass = 'badge-approved';
+                        break;
+                      case 'closed':
+                        badgeClass = 'badge-neutral';
+                        break;
+                      default:
+                        badgeClass = 'badge-neutral';
+                    }
+                    return React.createElement(
+                      'tr',
+                      { key: vac.id },
+                      React.createElement('td', null, vac.positionTitle),
+                      React.createElement(
+                        'td',
+                        null,
+                        vac.college ? vac.college.name : 'N/A'
+                      ),
+                      React.createElement('td', null, vac.track),
+                      React.createElement('td', null, vac.salaryGrade ?? 'N/A'),
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'span',
+                          { className: badgeClass },
+                          vac.status
+                        )
+                      ),
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'button',
+                          {
+                            onClick: () => handleApply(vac.id),
+                            className: `btn btn-primary btn-sm ${!isPublished ? 'opacity-50' : ''}`,
+                            disabled: !isPublished,
+                            title: isPublished
+                              ? undefined
+                              : 'Can only apply to published vacancies',
+                          },
+                          'Apply'
+                        )
+                      )
+                    );
+                  })
+                )
+              )
         )
       )
     )

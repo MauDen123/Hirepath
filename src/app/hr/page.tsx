@@ -26,6 +26,16 @@ const statusMeta: Record<string, { label: string; badge: string }> = {
   not_selected: { label: 'Not selected', badge: 'flagged' },
 };
 
+const qualificationFlagMeta: Record<
+  Application['qualificationFlag'],
+  { label: string; badge: string }
+> = {
+  pending: { label: 'Pending', badge: 'neutral' },
+  green: { label: 'Green Flag', badge: 'approved' },
+  yellow: { label: 'Yellow Flag', badge: 'pending' },
+  red: { label: 'Red Flag', badge: 'flagged' },
+};
+
 function initialsFrom(name: string) {
   const parts = name.trim().split(/\s+/);
   const first = parts[0]?.[0] ?? '';
@@ -192,8 +202,7 @@ export default async function HrPage() {
                   React.createElement('th', null, 'Applicant'),
                   React.createElement('th', null, 'Vacancy'),
                   React.createElement('th', null, 'Documents'),
-                  React.createElement('th', null, 'QS match'),
-                  React.createElement('th', null, 'Status'),
+                  React.createElement('th', null, 'Qualification Flag'),
                   React.createElement('th', null)
                 )
               ),
@@ -233,15 +242,27 @@ export default async function HrPage() {
                     React.createElement(
                       'td',
                       null,
-                      a.qsMatchScore != null ? `${a.qsMatchScore}% match` : '—'
+                      React.createElement(
+                        'span',
+                        {
+                          className: `badge ${qualificationFlagMeta[a.qualificationFlag] ? qualificationFlagMeta[a.qualificationFlag].badge : 'neutral'}`,
+                        },
+                        qualificationFlagMeta[a.qualificationFlag]
+                          ? qualificationFlagMeta[a.qualificationFlag].label
+                          : 'Unknown'
+                      )
                     ),
                     React.createElement(
                       'td',
                       null,
                       React.createElement(
                         'span',
-                        { className: `badge ${meta.badge}` },
-                        meta.label
+                        {
+                          className: `badge ${qualificationFlagMeta[a.qualificationFlag] ? qualificationFlagMeta[a.qualificationFlag].badge : 'neutral'}`,
+                        },
+                        qualificationFlagMeta[a.qualificationFlag]
+                          ? qualificationFlagMeta[a.qualificationFlag].label
+                          : 'Unknown'
                       )
                     ),
                     React.createElement(

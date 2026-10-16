@@ -76,6 +76,13 @@ enum VerificationStatus {
   flagged
 }
 
+enum QualificationFlag {
+  pending
+  green
+  yellow
+  red
+}
+
 enum PscOutcome {
   attended
   no_contact
@@ -239,7 +246,11 @@ model Application {
 
   status ApplicationStatus @default(submitted)
 
-  qsMatchScore Float? // 0-100, computed from parsed document data
+  qsMatchScore Float? // 0-100, computed from parsed document data (legacy)
+  qsBreakdown   Json?  // stores the QSMatchResult.breakdown object (legacy)
+  qualificationFlag     QualificationFlag @default(pending)
+  qualificationDetails  Json?
+  flagComputedAt        DateTime?
 
   // Stage 1 — Personnel Selection Committee (admin track)
   pscScore           Float?
